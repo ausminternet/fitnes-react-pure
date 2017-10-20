@@ -1,3 +1,5 @@
+import {sampleSize} from 'lodash'
+
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
@@ -79,4 +81,8 @@ export function resetExercises(exercises) {
       isDone: false,
     }
   })
+}
+
+export function createRandomWorkout(exercises) {
+  return sampleSize(exercises, 5)
 }

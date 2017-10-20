@@ -1,0 +1,47 @@
+.TopBar {
+  position: absolute;
+  z-index: $z-topbar;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  min-height: $topbar-height;
+  max-height: $topbar-height;
+  font-size: 17px;
+  color: #fff;
+  background-color:$primary-color;
+  // border-bottom: 1px solid $border-color;
+}
+
+.TopBarRight,
+.TopBarLeft {
+  display: flex;
+  align-items: stretch;
+  width: 30%;
+}
+
+.TopBarRight {
+  justify-content: flex-end;
+
+  &:last-child:first-child {
+    width: 100%;
+  }
+}
+
+.TopBarCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  font-weight: bold;
+
+  &:first-child {
+    margin-left: 30%;
+  }
+
+  h1 {
+    font-size: 17px;
+  }
+}

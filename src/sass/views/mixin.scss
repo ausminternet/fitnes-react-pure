@@ -1,0 +1,26 @@
+.View {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #fff;
+  
+  .Sheet & {
+    height: calc(100vh - 44px - 26px);
+    margin-top: 60px;
+  }
+  
+  &.withTabBar {
+    padding-bottom: 49px;
+  }
+  
+  &.withTopBar {
+    padding-top: 44px;
+  }
+}
+
+.ViewContent {
+  flex-grow: 1;
+  overflow: scroll;
+  padding: 8px;
+  -webkit-overflow-scrolling: touch;
+}

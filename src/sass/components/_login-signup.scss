@@ -1,0 +1,69 @@
+.LoginForm,
+.SignupForm {
+  .Divider {
+    height: 1px;
+    border-width: 0 $spacing;
+    border-style: solid;
+    border-color: #fff;
+    margin: 0;
+    background-color: $border-color;
+  }
+
+  .LoginEmail,
+  .LoginPassword,
+  .LoginName {
+    padding: $spacing $spacing;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:disabled {
+      opacity: 1;
+      background-color: #fff;
+    }
+  }
+
+  > :first-child {
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+
+  .LoginPassword {
+    border-bottom-right-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+    margin-bottom: $spacing;
+  }
+
+  .LoginButton,
+  .SignupButton {
+
+  }
+
+  .MessageContainer {
+    padding: $spacing;
+    margin: 0;
+    background-color: #fff;
+
+    .ErrorMessage {
+      padding: $spacing;
+      border-radius: $border-radius;
+      margin: 0;
+      font-weight: 500;
+      color: white;
+      background-color: #d42929;
+    }
+
+    .SuccessMessage {
+      padding: $spacing;
+      border-radius: $border-radius;
+      margin: 0;
+      font-weight: 500;
+      color: white;
+      background-color: #008e06;
+    }
+  }
+}

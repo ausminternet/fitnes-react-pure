@@ -1,0 +1,38 @@
+.ActiveWorkout {
+
+  .TopBar {
+    min-height: 70px;
+  }
+
+  padding: 8px;
+
+  .CancelWorkoutButton,
+  .RestartWorkoutButton,
+  .PauseWorkoutButton {
+    @include icon-only-button();
+  }
+
+  .CancelWorkoutButton {
+    font-size: 17px;
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    z-index: 101;
+  }
+  
+  // .RestartWorkoutButton {
+    //   position: absolute;
+    //   top: 10px;
+    //   right: 5px;
+    // }
+    
+  .PauseWorkoutButton {
+    position: absolute;
+    z-index: 101;
+    top: 10px;
+    right: 5px;
+    transform: scale(1.25)
+  }
+}
+

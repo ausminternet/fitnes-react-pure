@@ -1,0 +1,84 @@
+.Stats {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.Stat {
+  position: relative;
+  overflow: hidden;
+  width: calc(50% - #{0.5 * $spacing});
+  padding: (2 * $spacing) (1.5 * $spacing);
+  border-radius: $border-radius;
+  margin: .5 * $spacing;
+  background-color: rgba(#000, .1);
+
+  &:nth-child(odd) {
+    margin-left: 0;
+  }
+
+  &:nth-child(even) {
+    margin-right: 0;
+  }
+
+  &:last-child,
+  &:nth-last-child(2):nth-child(odd) {
+    margin-bottom: 0
+  }
+
+  .data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .name {
+    margin-bottom: 0.5 * $spacing;
+    text-transform: capitalize;
+  }
+
+  .repeatsLeft {
+    display: flex;
+    font-weight: 500;
+
+    @keyframes doneAnimation {
+      0% {
+        transform: scale(.5);
+      }
+
+      10% {
+        transform: scale(.5);
+      }
+
+      70% {
+        transform: scale(2);
+      }
+
+      100% {
+        transform: scale(1.5);
+      }
+    }
+
+    img {
+      height: 22px;
+      animation-name: doneAnimation;
+      animation-duration: .5s;
+      animation-fill-mode: both;
+    }
+  }
+
+  .progressbar {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    height: 6px;
+  }
+
+  .progress {
+    height: inherit;
+    transition: all .5s ease;
+    background-color: $primary-color;
+  }
+}

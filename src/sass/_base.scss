@@ -1,0 +1,45 @@
+html {
+  box-sizing: border-box;
+}
+
+// See link above in comment for <html>
+// stylelint-disable selector-max-universal
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  position: fixed;
+}
+
+html,
+body,
+#root,
+.App {
+  height: 100vh;
+  width: 100vw;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  background-color: $primary-color;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow:0 0 0 50px white inset;
+}
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 50px white inset;
+}

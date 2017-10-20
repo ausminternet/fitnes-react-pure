@@ -1,0 +1,13 @@
+.Timer {
+  font-size: 28px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px + (3 * $spacing);
+  padding: 2 * $spacing;
+  border-radius: 3px;
+  margin-bottom: 0.5 * $spacing;
+  font-weight: 500;
+  background-color: rgba(#000, .1);
+}

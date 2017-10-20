@@ -1,0 +1,39 @@
+@mixin primary-button() {
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // background: $primary-color;
+  // color: #fff;
+  color: $primary-color;
+  border-radius: $border-radius;
+  border: 2px solid $primary-color;
+  font-size: 18px;
+  line-height: 1;
+  padding: (2 * $spacing) (1.5 * $spacing);
+  text-decoration: none;
+
+  &:active {
+    background-color: $primary-color;
+    color: #fff;
+  }
+}
+
+@mixin icon-only-button() {
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: 0;
+  padding: $spacing;
+
+  &:focus {
+    outline: none;
+  }
+
+  img {
+    height: 26px;
+    width: 26px;
+  }
+}

@@ -1,0 +1,27 @@
+html {
+  box-sizing: border-box; }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit; }
+
+html,
+body {
+  position: fixed;
+  overflow: hidden;
+  width: 100vw;
+  height: 100%;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent; }
+
+#root,
+.App {
+  width: inherit;
+  height: 100%; }
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 50px white inset; }
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 50px white inset; }

@@ -1,0 +1,425 @@
+html {
+  box-sizing: border-box; }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit; }
+
+html {
+  position: fixed; }
+
+html,
+body,
+#root,
+.App {
+  height: 100vh;
+  width: 100vw; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  background-color: #c0392b; }
+
+.App {
+  display: flex;
+  flex-direction: column; }
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 50px white inset; }
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 50px white inset; }
+
+.Loader {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  .Loader a-loader {
+    display: flex;
+    justify-content: center; }
+
+@keyframes fade {
+  0% {
+    opacity: .1; }
+  20% {
+    opacity: 1; }
+  100% {
+    opacity: .1; } }
+    .Loader a-loader span {
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background-color: #fff;
+      animation-name: fade;
+      animation-duration: 1.4s;
+      animation-iteration-count: infinite;
+      animation-fill-mode: both; }
+      .Loader a-loader span:nth-child(2) {
+        animation-delay: .2s; }
+      .Loader a-loader span:nth-child(3) {
+        animation-delay: .4s; }
+      .Loader a-loader span:not(:first-child) {
+        margin-left: .3em; }
+  .Loader .text {
+    height: 40px; }
+  .Sheet .Loader {
+    margin-top: 44px; }
+
+.content-header {
+  font-size: 18px;
+  margin: 0;
+  margin-bottom: 8px; }
+
+.Sheet {
+  transform: translateY(100%);
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  background-color: #fff; }
+  .Sheet.opening {
+    animation: .2s ease-in-out 0s 1 slideup; }
+  .Sheet.open {
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.5);
+    transform: translateY(0); }
+  .Sheet.closing {
+    animation: .3s ease-out 0s 1 slidedown; }
+  .Sheet .CloseSheetButton {
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: 0;
+    padding: 8px;
+    position: absolute;
+    top: 10px;
+    left: 5px; }
+    .Sheet .CloseSheetButton:focus {
+      outline: none; }
+    .Sheet .CloseSheetButton img {
+      height: 26px;
+      width: 26px; }
+
+@keyframes slideup {
+  from {
+    transform: translateY(100%); }
+  to {
+    transform: translateY(0); } }
+
+@keyframes slidedown {
+  from {
+    transform: translateY(0); }
+  to {
+    transform: translateY(100%); } }
+
+.TopBar {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  min-height: 44px;
+  max-height: 44px;
+  font-size: 17px;
+  color: #fff;
+  background-color: #c0392b; }
+
+.TopBarRight,
+.TopBarLeft {
+  display: flex;
+  align-items: stretch;
+  width: 30%; }
+
+.TopBarRight {
+  justify-content: flex-end; }
+  .TopBarRight:last-child:first-child {
+    width: 100%; }
+
+.TopBarCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  font-weight: bold; }
+  .TopBarCenter:first-child {
+    margin-left: 30%; }
+  .TopBarCenter h1 {
+    font-size: 17px; }
+
+.TopBarButton,
+.TopBarLink {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  margin-bottom: 0;
+  background: transparent;
+  border: 0;
+  font-size: 17px;
+  color: #fff;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent; }
+  .TopBarButton:focus,
+  .TopBarLink:focus {
+    box-shadow: none;
+    outline: none; }
+  .TopBarButton:active,
+  .TopBarLink:active {
+    opacity: .5; }
+  .TopBarButton img,
+  .TopBarLink img {
+    height: 22px;
+    padding-right: 6px; }
+    .TopBarButton img:last-child,
+    .TopBarLink img:last-child {
+      padding-right: 0; }
+
+.TabBar {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  min-height: 49px;
+  max-height: 49px;
+  border-top: 1px solid #cdcdcd;
+  background-color: #fff;
+  background-color: #f8f8f8; }
+
+.TabBarLink {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: .5;
+  width: 100%; }
+  .TabBarLink img {
+    width: 28px;
+    height: 28px; }
+  .TabBarLink span {
+    display: none; }
+  .TabBarLink.active {
+    opacity: 1; }
+    .TabBarLink.active::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      width: 5px;
+      height: 5px;
+      border-radius: 100%;
+      background-color: #c0392b; }
+
+.RandomWorkouts .buttons {
+  display: flex;
+  flex-direction: row; }
+
+.StartWorkoutButton {
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #c0392b;
+  border-radius: 3px;
+  border: 2px solid #c0392b;
+  font-size: 18px;
+  line-height: 1;
+  padding: 16px 12px;
+  text-decoration: none;
+  width: 100%;
+  height: 100px;
+  font-size: 36px;
+  margin-bottom: 8px;
+  font-weight: bold; }
+  .StartWorkoutButton:active {
+    background-color: #c0392b;
+    color: #fff; }
+  .StartWorkoutButton:not(:last-child) {
+    margin-right: 8px; }
+
+.Timer {
+  font-size: 28px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 54px;
+  padding: 16px;
+  border-radius: 3px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.1); }
+
+.CurrentExercise {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 -8px;
+  flex-grow: 1;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 1;
+  transition: opacity ease .2s;
+  background-color: #c0392b; }
+  .CurrentExercise .name,
+  .CurrentExercise .message {
+    font-size: 28px;
+    line-height: 1;
+    margin-bottom: 16px;
+    color: #fff;
+    width: 100%;
+    padding: 19px 8px 16px;
+    text-align: center;
+    background-color: #c0392b;
+    position: absolute;
+    top: 0;
+    z-index: 100; }
+  .CurrentExercise .repeats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 16px;
+    margin-top: 36px;
+    font-size: 150px;
+    line-height: 1;
+    flex-grow: 1;
+    width: 100%;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.3);
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px; }
+  .CurrentExercise.paused .repeats {
+    color: rgba(0, 0, 0, 0.2); }
+
+.Stats {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+
+.Stat {
+  position: relative;
+  overflow: hidden;
+  width: calc(50% - 4px);
+  padding: 16px 12px;
+  border-radius: 3px;
+  margin: 4px;
+  background-color: rgba(0, 0, 0, 0.1); }
+  .Stat:nth-child(odd) {
+    margin-left: 0; }
+  .Stat:nth-child(even) {
+    margin-right: 0; }
+  .Stat:last-child, .Stat:nth-last-child(2):nth-child(odd) {
+    margin-bottom: 0; }
+  .Stat .data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+  .Stat .name {
+    margin-bottom: 4px;
+    text-transform: capitalize; }
+  .Stat .repeatsLeft {
+    display: flex;
+    font-weight: 500; }
+
+@keyframes doneAnimation {
+  0% {
+    transform: scale(0.5); }
+  10% {
+    transform: scale(0.5); }
+  70% {
+    transform: scale(2); }
+  100% {
+    transform: scale(1.5); } }
+    .Stat .repeatsLeft img {
+      height: 22px;
+      animation-name: doneAnimation;
+      animation-duration: .5s;
+      animation-fill-mode: both; }
+  .Stat .progressbar {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    height: 6px; }
+  .Stat .progress {
+    height: inherit;
+    transition: all .5s ease;
+    background-color: #c0392b; }
+
+.View {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #fff; }
+  .Sheet .View {
+    height: calc(100vh - 44px - 26px);
+    margin-top: 60px; }
+  .View.withTabBar {
+    padding-bottom: 49px; }
+  .View.withTopBar {
+    padding-top: 44px; }
+
+.ViewContent {
+  flex-grow: 1;
+  overflow: scroll;
+  padding: 8px;
+  -webkit-overflow-scrolling: touch; }
+
+.ActiveWorkout {
+  padding: 8px; }
+  .ActiveWorkout .TopBar {
+    min-height: 70px; }
+  .ActiveWorkout .CancelWorkoutButton,
+  .ActiveWorkout .RestartWorkoutButton,
+  .ActiveWorkout .PauseWorkoutButton {
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: 0;
+    padding: 8px; }
+    .ActiveWorkout .CancelWorkoutButton:focus,
+    .ActiveWorkout .RestartWorkoutButton:focus,
+    .ActiveWorkout .PauseWorkoutButton:focus {
+      outline: none; }
+    .ActiveWorkout .CancelWorkoutButton img,
+    .ActiveWorkout .RestartWorkoutButton img,
+    .ActiveWorkout .PauseWorkoutButton img {
+      height: 26px;
+      width: 26px; }
+  .ActiveWorkout .CancelWorkoutButton {
+    font-size: 17px;
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    z-index: 101; }
+  .ActiveWorkout .PauseWorkoutButton {
+    position: absolute;
+    z-index: 101;
+    top: 10px;
+    right: 5px;
+    transform: scale(1.25); }

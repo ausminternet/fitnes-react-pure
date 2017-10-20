@@ -1,0 +1,46 @@
+
+.Sheet {
+  transform: translateY(100%);
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  background-color: #fff;
+  // padding: $spacing;
+
+  &.opening {
+    animation: .2s ease-in-out 0s 1 slideup;
+  }
+
+  &.open {
+    position: absolute;
+    z-index: $z-sheet;
+    top: 10px;
+    // top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 -3px 8px rgba(#000, .5);
+    transform: translateY(0);
+  }
+
+  &.closing {
+    animation: .3s ease-out 0s 1 slidedown;
+  }
+
+  .CloseSheetButton {
+    @include icon-only-button();
+    position: absolute;
+    top: 10px;
+    left: 5px;
+  }
+
+}
+
+@keyframes slideup {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slidedown {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
+}
