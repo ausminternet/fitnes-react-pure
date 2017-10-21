@@ -49,14 +49,14 @@
       &:not(:first-child) {
         margin-left: .3em;
       }
+
+      .View & {
+        background-color: $accent-color;
+      }
     }
   }
 
   .text {
     height: 40px;
-  }
-
-  .Sheet & {
-    margin-top: $topbar-height;
   }
 }

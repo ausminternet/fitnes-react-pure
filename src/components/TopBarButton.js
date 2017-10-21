@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export default function TopBarButton ({onClick, icon, text, ...rest}) {
+const TopBarButton = ({onClick, icon, text, ...rest}) => {
   return (
     <button className="TopBarButton" onClick={onClick} {...rest}>
       {icon && <img src={icon} alt={text}/>}
@@ -8,3 +9,13 @@ export default function TopBarButton ({onClick, icon, text, ...rest}) {
     </button>
   )
 }
+
+TopBarButton.PropTypes = {
+  onClick: PropTypes.func.isRequired,
+  text: PropTypes.string,
+  icon: PropTypes.shape({
+    uri: PropTypes.string,
+  }),
+}
+
+export default TopBarButton

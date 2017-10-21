@@ -8,6 +8,7 @@ export default function AuthForm({
   onPasswordReset,
   loading,
   buttonText,
+  buttonLoadingText,
   showName,
   showResetPassword
 }) {
@@ -61,8 +62,7 @@ export default function AuthForm({
         type="submit"
         disabled={loading}
       >
-        {buttonText}
-        {loading && <a-loader type="ellipse" />}
+        {loading ? buttonLoadingText : buttonText}
       </button>
       {showResetPassword &&
         <button

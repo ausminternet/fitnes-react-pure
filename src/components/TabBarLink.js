@@ -1,33 +1,28 @@
-import React, {Component} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import {NavLink, withRouter} from 'react-router-dom'
 
-class TabBarLink extends Component {
-  constructor({to, icon, iconActive, text, location, staticContext, ...rest}) {
-    super()
-    this.rest = rest
-    this.state = {
-      to,
-      icon,
-      iconActive,
-      text,
-      location
-    }
-  }
+const TabBarLink = ({to, icon, iconActive, text, location}) => {
+  return (
+    <NavLink to={to} exact className="TabBarLink" activeClassName="active">
+      {location.pathname === to
+        ? <img src={iconActive.uri} alt={text}/>
+        : <img src={icon.uri} alt={text}/>}
+      {text && <span>{text}</span>}
+    </NavLink>
+  )
+}
 
-  componentWillReceiveProps({location}) {
-    this.setState({location})
-  }
-
-  render() {
-    return (
-      <NavLink to={this.state.to} className="TabBarLink" activeClassName="active" {...this.rest}>
-        {this.state.location.pathname === this.state.to
-          ? <img src={this.state.iconActive} alt={this.state.text}/>
-          : <img src={this.state.icon} alt={this.state.text}/>}
-        {this.state.text && <span>{this.state.text}</span>}
-      </NavLink>
-    )
-  }
+TabBarLink.propTypes = {
+  to: PropTypes.string,
+  icon: PropTypes.shape({
+    uri: PropTypes.string,
+  }),
+  iconActive: PropTypes.shape({
+    uri: PropTypes.string,
+  }),
+  text: PropTypes.string,
+  location: PropTypes.object
 }
 
 export default withRouter(TabBarLink)

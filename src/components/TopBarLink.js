@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-export default function TopBarLink ({to, text, icon}) {
+const TopBarLink = ({to, text, icon}) => {
   return (
     <Link to={to} className="TopBarLink">
       {icon && <img src={icon} alt={text}/>}
@@ -9,3 +10,13 @@ export default function TopBarLink ({to, text, icon}) {
     </Link>
   )
 }
+
+TopBarLink.PropTypes = {
+  to: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  icon: PropTypes.shape({
+    uri: PropTypes.string,
+  }),
+}
+
+export default TopBarLink

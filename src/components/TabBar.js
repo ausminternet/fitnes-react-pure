@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import TabBarLink from 'components/TabBarLink'
 import ProfileIcon from 'media/icons/black/settings.png'
 import ProfileIconActive from 'media/icons/red/settings.png'
@@ -8,13 +9,44 @@ import LogIcon from 'media/icons/black/calendar.png'
 import LogIconActive from 'media/icons/red/calendar.png'
 
 const TabBar = ({children}) => {
+  const tabBarConfig = [
+    {
+      to: '/',
+      icon: SportIcon,
+      iconActive: SportIconActive,
+      text: 'Start',
+    },
+    {
+      to: '/log',
+      icon: LogIcon,
+      iconActive: LogIconActive,
+      text: 'Log',
+    },
+    {
+      to: '/profile',
+      icon: ProfileIcon,
+      iconActive: ProfileIconActive,
+      text: 'Profil',
+    }
+  ]
   return (
     <div className="TabBar">
-      <TabBarLink to="/workout" icon={SportIcon} iconActive={SportIconActive} text="Start"/>
-      <TabBarLink to="/log" icon={LogIcon} iconActive={LogIconActive} text="Log" />
-      <TabBarLink to="/profile" icon={ProfileIcon} iconActive={ProfileIconActive} text="Profile" />
+      {tabBarConfig.map((t, i) => {
+        return (
+          <TabBarLink
+            to={t.to}
+            icon={{uri: t.icon}}
+            iconActive={{uri: t.iconActive}}
+            text={t.text}
+            key={i}/>
+        )
+      })}
     </div>
   )
+}
+
+TabBar.PropTypes = {
+  children: PropTypes.node
 }
 
 export default TabBar

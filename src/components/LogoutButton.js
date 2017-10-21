@@ -1,11 +1,8 @@
-import React, {Component} from 'react'
-import { logout } from 'api'
-import TopBarButton from 'components/TopBarButton'
+import React from 'react'
+import TopBarLink from 'components/TopBarLink'
 
-export default class LogoutButton extends Component {
-  render () {
-    return (
-      <TopBarButton text="Logout" onClick={logout} />
-    )
-  }
+const LogoutButton = () => {
+  return (<TopBarLink text="Logout" to="/logout" />)
 }
+
+export default LogoutButton

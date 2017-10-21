@@ -1,25 +1,32 @@
 import React, {Component} from 'react'
+import {NavLink} from 'react-router-dom'
+
 import { signUp } from 'api'
 import { validateEmail } from 'lib/utils'
-import AuthForm from 'components/AuthForm'
+
 import { TopBar, TopBarLeft } from 'components/TopBar'
+import ViewContent from 'components/ViewContent'
 import TopBarLink from 'components/TopBarLink'
+import AuthForm from 'components/AuthForm'
 import Logo from 'components/Logo'
 import View from 'components/View'
-import ViewContent from 'components/ViewContent'
-import BackIcon from 'media/icons/blue/back-filled.png'
+
+import BackIcon from 'media/icons/white/back-filled.png'
 
 export default class Register extends Component {
+  state = {
+    errorMessage: '',
+    successMessage: ''
+  }
+
   handleSubmit = async (e) => {
     e.preventDefault()
     if (!this.readyToSubmit()) return
-    this.setState({
-      loading: true,
-    })
+    this.setState({loading: true})
 
     try {
-      const user = await signUp(this.state.email, this.state.password)
-      user.updateProfile({displayName: this.state.name})
+      const user = await signUp(this.email, this.password)
+      user.updateProfile({displayName: this.name})
     } catch (err) {
       this.setState({
         errorMessage: err.message,
@@ -29,24 +36,16 @@ export default class Register extends Component {
   }
 
   handleInputChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
+    this[e.target.name] = e.target.value
   }
 
   readyToSubmit() {
-    if (validateEmail(this.state.email) &&
-      this.state.password &&
-      this.state.name
-    ) {
-      return true
-    }
-    return false
+    return validateEmail(this.email) && this.password && this.name
   }
 
   render() {
     return (
-      <View>
+      <View name="Register">
         <TopBar>
           <TopBarLeft>
             <TopBarLink to="/Login" text="Login" icon={BackIcon} />
@@ -60,6 +59,7 @@ export default class Register extends Component {
             onInputChange={this.handleInputChange}
             loading={this.state.loading}
             buttonText="Register"
+            buttonLoadingText="Setting up account ..."
             showPasswordReset={false}
             showName={true}
           />

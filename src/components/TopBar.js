@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export const TopBar = ({ children }) => {
   return (
@@ -6,6 +7,10 @@ export const TopBar = ({ children }) => {
       {children}
     </div>
   )
+}
+
+TopBar.PropTypes = {
+  children: PropTypes.node
 }
 
 export const TopBarLeft = ({ children }) => {
@@ -16,6 +21,10 @@ export const TopBarLeft = ({ children }) => {
   )
 }
 
+TopBarLeft.PropTypes = {
+  children: PropTypes.node
+}
+
 export const TopBarRight = ({ children }) => {
   return (
     <div className="TopBarRight">
@@ -24,10 +33,18 @@ export const TopBarRight = ({ children }) => {
   )
 }
 
+TopBarRight.PropTypes = {
+  children: PropTypes.node
+}
+
 export const TopBarCenter = ({ children }) => {
   return (
     <div className="TopBarCenter">
       <h1>{children}</h1>
     </div>
   )
+}
+
+TopBarCenter.PropTypes = {
+  children: PropTypes.node
 }

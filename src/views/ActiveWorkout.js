@@ -1,23 +1,25 @@
 import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
-import CurrentExercise from 'components/CurrentExercise'
-import PauseWorkoutButton from 'components/PauseWorkoutButton'
-import CancelWorkoutButton from 'components/CancelWorkoutButton'
-import Loader from 'components/Loader'
-import Stats from 'components/Stats'
-import Timer from 'components/Timer'
+
 import * as workout from 'lib/workout'
-import View from 'components/View'
 import * as api from 'api'
 
+import TimerContainer from 'container/TimerContainer'
+
+import CancelWorkoutButton from 'components/CancelWorkoutButton'
+import PauseWorkoutButton from 'components/PauseWorkoutButton'
+import CurrentExercise from 'components/CurrentExercise'
+import Loader from 'components/Loader'
+import Stats from 'components/Stats'
+import View from 'components/View'
+
 export default class ActiveWorkout extends Component {
-  constructor({id, random, exercises, computedMatch}) {
+  constructor({computedMatch, random, id}) {
     super()
-    this.exercises = exercises
+    this.effort = computedMatch.params.effort
+    this.random = random
+    this.id = id
     this.state = {
-      random,
-      id,
-      effort: computedMatch.params.effort,
       loading: true,
       currentExercise: undefined,
       currentRepeats: 0,
@@ -25,19 +27,24 @@ export default class ActiveWorkout extends Component {
       done: false,
       startedAt: null,
       paused: false,
-      elapsed: 0,
     }
   }
 
   async componentDidMount() {
-    if (this.state.random) {
-      this.prepareRandomWorkout(this.state.effort)
+    this._isMounted = true
+    this.exercises = await api.getAllExercises(api.currentUser().uid)
+    if (this.random) {
+      this.prepareRandomWorkout(this.effort)
       this.start()
     }
   }
 
+  componentWillUnmount(nextProps, nextState) {
+    this._isMounted = false
+  }
+
   async prepareRandomWorkout() {
-    this.exercises = workout.setEffort(this.exercises, this.state.effort)
+    this.exercises = workout.setEffort(this.exercises, this.effort)
     this.prepareNextExercise(this.exercises)
   }
 
@@ -87,7 +94,6 @@ export default class ActiveWorkout extends Component {
     )
     this.setState({exercises})
     if (workout.done(exercises)) {
-      console.log('finished')
       this.finish()
     } else {
       this.prepareNextExercise(exercises)
@@ -99,16 +105,15 @@ export default class ActiveWorkout extends Component {
   }
 
   handleElapsedTime = (elapsed) => {
-    this.setState({elapsed})
+    this.elapsed = elapsed
   }
 
   async finish() {
-    this.setState({
-      loading: true,
-    })
+    this.setState({loading: true})
     await api.saveWorkout(api.currentUser().uid, {
       startedAt: this.state.startedAt,
-      elapsedTime: this.state.elapsed,
+      elapsedTime: 0,
+      // elapsedTime: this.elapsed,
       exercises: this.state.exercises.map(e => {
         return {
           id: e.id,
@@ -146,30 +151,23 @@ export default class ActiveWorkout extends Component {
     if (!this.state.loading) {
       return (
         <View name="ActiveWorkout" withTabBar={false}>
-          {/* <TopBar>
-            <TopBarLeft> */}
           <CancelWorkoutButton
             onClick={this.cancel}
           />
-          {/* </TopBarLeft>
-            <TopBarRight> */}
           <PauseWorkoutButton
             onClick={this.toggleWorkout}
             paused={this.state.paused}
           />
-          {/* <RestartWorkoutButton onClick={this.restart}/> */}
-          {/* </TopBarRight>
-          </TopBar> */}
           <CurrentExercise
             name={this.state.currentExercise.name}
             repeats={this.state.currentRepeats}
             paused={this.state.paused}
             onClick={this.tick}
           />
-          <Timer
+          <TimerContainer
             startTime={this.state.startedAt}
             paused={this.state.paused}
-            onChange={this.handleElapsedTime} />
+          />
           <Stats exercises={this.state.exercises} />
         </View>
       )

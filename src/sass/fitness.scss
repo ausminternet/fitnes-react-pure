@@ -1,8 +1,8 @@
 @import 'vars';
 @import 'base';
-// @import 'components/logo';
+@import 'components/logo';
 @import 'components/loader';
-// @import 'components/login-signup';
+@import 'components/login-signup';
 @import 'components/button';
 @import 'components/content-header';
 @import 'components/sheet';
@@ -14,8 +14,9 @@
 @import 'components/current-exercise';
 @import 'components/stats';
 @import 'views/mixin';
+@import 'views/app';
 @import 'views/index';
 @import 'views/profile';
-// @import 'views/login-signup';
+@import 'views/login-signup';
 @import 'views/active-workout';
 // @import 'views/finished-workout';

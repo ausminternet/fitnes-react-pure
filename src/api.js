@@ -28,6 +28,21 @@ export const getAllExercises = async (uid) => {
   return exercises
 }
 
+export const getLastWorkouts = async (uid) => {
+  const collection = `users/${uid}/log`
+  const data = await firestore.collection(collection).get()
+  let workouts = []
+  data.forEach((w) => {
+    const d = w.data()
+    workouts.push({
+      startedAt: d.startedAt,
+      elapsedTime: d.elapsedTime
+    })
+  })
+  console.log(workouts)
+  return workouts
+}
+
 export const saveWorkout = async (uid, workout) => {
   const collection = 'users/' + uid + '/log'
   await firestore.collection(collection).add(workout)

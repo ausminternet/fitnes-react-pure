@@ -1,13 +1,15 @@
 import React from 'react'
-import RestartIcon from 'media/icons/white/reset-filled.png'
+import PropTypes from 'prop-types'
+import RestartIcon from 'media/icons/blue/reset-filled.png'
 
-export default function RestartWorkoutButton({onClick}) {
+const RestartWorkoutButton = ({onClick}) => {
   return (
-    <button
-      className="RestartWorkoutButton"
-      onClick={onClick}
-    >
+    <button className="RestartWorkoutButton" onClick={onClick}>
       <img src={RestartIcon} alt="Restart workout"/>
     </button>
   )
+}
+
+RestartWorkoutButton.PropTypes = {
+  onClick: PropTypes.func.isRequired,
 }

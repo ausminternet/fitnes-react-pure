@@ -22,7 +22,7 @@ body {
   font-family: sans-serif;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  background-color: #c0392b; }
+  background-color: #444; }
 
 .App {
   display: flex;
@@ -33,6 +33,17 @@ input:-webkit-autofill {
 
 input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 50px white inset; }
+
+.Logo {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  height: 50px;
+  margin-bottom: 32px; }
+  .Logo .LogoIcon {
+    height: 100%; }
+  .Logo .LogoName {
+    height: 100%; }
 
 .Loader {
   position: absolute;
@@ -71,10 +82,108 @@ input:-webkit-autofill:focus {
         animation-delay: .4s; }
       .Loader a-loader span:not(:first-child) {
         margin-left: .3em; }
+      .View .Loader a-loader span {
+        background-color: #c0392b; }
   .Loader .text {
     height: 40px; }
-  .Sheet .Loader {
-    margin-top: 44px; }
+
+.LoginForm .Divider,
+.SignupForm .Divider {
+  height: 1px;
+  border-width: 0 15px;
+  border-style: solid;
+  border-color: #fff;
+  margin: 0;
+  background-color: #cdcdcd; }
+
+.LoginForm .LoginEmail,
+.LoginForm .LoginPassword,
+.LoginForm .LoginName,
+.SignupForm .LoginEmail,
+.SignupForm .LoginPassword,
+.SignupForm .LoginName {
+  padding: 16px;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  width: 100%;
+  font-size: 16px; }
+  .LoginForm .LoginEmail:focus,
+  .LoginForm .LoginPassword:focus,
+  .LoginForm .LoginName:focus,
+  .SignupForm .LoginEmail:focus,
+  .SignupForm .LoginPassword:focus,
+  .SignupForm .LoginName:focus {
+    box-shadow: none; }
+  .LoginForm .LoginEmail:disabled,
+  .LoginForm .LoginPassword:disabled,
+  .LoginForm .LoginName:disabled,
+  .SignupForm .LoginEmail:disabled,
+  .SignupForm .LoginPassword:disabled,
+  .SignupForm .LoginName:disabled {
+    opacity: 1;
+    background-color: #fff; }
+
+.LoginForm > :first-child,
+.SignupForm > :first-child {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px; }
+
+.LoginForm .LoginPassword,
+.SignupForm .LoginPassword {
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  margin-bottom: 8px; }
+
+.LoginForm .LoginButton,
+.LoginForm .SignupButton,
+.SignupForm .LoginButton,
+.SignupForm .SignupButton {
+  width: 100%;
+  border-radius: 3px;
+  font-size: 16px;
+  line-height: 1;
+  text-align: center;
+  padding: 16px;
+  border: 1px solid #fff;
+  border: 0;
+  background-color: #601d16;
+  background-color: #c0392b;
+  color: #fff; }
+
+.LoginForm .MessageContainer,
+.SignupForm .MessageContainer {
+  padding: 8px;
+  margin: 0;
+  background-color: #fff; }
+  .LoginForm .MessageContainer .ErrorMessage,
+  .SignupForm .MessageContainer .ErrorMessage {
+    padding: 8px;
+    border-radius: 3px;
+    margin: 0;
+    font-weight: 500;
+    color: white;
+    background-color: #d42929; }
+  .LoginForm .MessageContainer .SuccessMessage,
+  .SignupForm .MessageContainer .SuccessMessage {
+    padding: 8px;
+    border-radius: 3px;
+    margin: 0;
+    font-weight: 500;
+    color: white;
+    background-color: #008e06; }
+
+.LoginRegisterLink {
+  display: block;
+  padding: 16px;
+  font-size: 16px;
+  line-height: 1;
+  text-align: center;
+  border: 1px solid #fff;
+  color: #fff;
+  margin-top: 32px;
+  border-radius: 3px;
+  text-decoration: none; }
 
 .content-header {
   font-size: 18px;
@@ -141,7 +250,7 @@ input:-webkit-autofill:focus {
   max-height: 44px;
   font-size: 17px;
   color: #fff;
-  background-color: #c0392b; }
+  background-color: #444; }
 
 .TopBarRight,
 .TopBarLeft {
@@ -240,7 +349,9 @@ input:-webkit-autofill:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #c0392b;
+  background: #c0392b;
+  color: #444;
+  color: #fff;
   border-radius: 3px;
   border: 2px solid #c0392b;
   font-size: 18px;
@@ -251,9 +362,10 @@ input:-webkit-autofill:focus {
   height: 100px;
   font-size: 36px;
   margin-bottom: 8px;
-  font-weight: bold; }
+  font-weight: bold;
+  border-radius: 9px; }
   .StartWorkoutButton:active {
-    background-color: #c0392b;
+    background-color: #444;
     color: #fff; }
   .StartWorkoutButton:not(:last-child) {
     margin-right: 8px; }
@@ -280,7 +392,7 @@ input:-webkit-autofill:focus {
   -webkit-tap-highlight-color: transparent;
   opacity: 1;
   transition: opacity ease .2s;
-  background-color: #c0392b; }
+  background-color: #444; }
   .CurrentExercise .name,
   .CurrentExercise .message {
     font-size: 28px;
@@ -290,7 +402,7 @@ input:-webkit-autofill:focus {
     width: 100%;
     padding: 19px 8px 16px;
     text-align: center;
-    background-color: #c0392b;
+    background-color: #444;
     position: absolute;
     top: 0;
     z-index: 100; }
@@ -301,6 +413,7 @@ input:-webkit-autofill:focus {
     padding-bottom: 16px;
     margin-top: 36px;
     font-size: 150px;
+    font-weight: 300;
     line-height: 1;
     flex-grow: 1;
     width: 100%;
@@ -386,6 +499,21 @@ input:-webkit-autofill:focus {
   overflow: scroll;
   padding: 8px;
   -webkit-overflow-scrolling: touch; }
+
+.App {
+  position: relative;
+  background-color: #444;
+  background-image: linear-gradient(to bottom, #444 0%, rgba(68, 68, 68, 0) 8%), url("./media/images/bg-pattern.png"); }
+  .App .View.Login,
+  .App .View.Register {
+    background-color: transparent; }
+    .App .View.Login .TopBar,
+    .App .View.Register .TopBar {
+      background-color: transparent; }
+
+.Login,
+.Register {
+  margin-top: 100px; }
 
 .ActiveWorkout {
   padding: 8px; }

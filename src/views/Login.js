@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
+
 import { login, resetPassword } from 'api'
 import { validateEmail } from 'lib/utils'
-import AuthForm from 'components/AuthForm'
+
 import { TopBar, TopBarRight } from 'components/TopBar'
-import TopBarLink from 'components/TopBarLink'
-import Logo from 'components/Logo'
-import View from 'components/View'
 import ViewContent from 'components/ViewContent'
-import RegisterIcon from 'media/icons/blue/add-user-male.png'
+import TopBarLink from 'components/TopBarLink'
+import AuthForm from 'components/AuthForm'
+import View from 'components/View'
+import Logo from 'components/Logo'
+
+import RegisterIcon from 'media/icons/white/register.png'
 
 export default class Login extends Component {
   state = {
@@ -17,12 +20,11 @@ export default class Login extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault()
-    this.setState({
-      loading: true,
-    })
+    if (!this.readyToSubmit()) return
+    this.setState({loading: true})
 
     try {
-      await login(this.state.email, this.state.password)
+      await login(this.email, this.password)
     } catch (err) {
       this.setState({
         errorMessage: 'Invalid username/password.',
@@ -33,13 +35,11 @@ export default class Login extends Component {
 
   resetPassword = async (e) => {
     e.preventDefault()
-    this.setState({
-      loading: true,
-    })
+    this.setState({loading: true})
     try {
-      await resetPassword(this.state.email)
+      await resetPassword(this.email)
       this.setState({
-        successMessage: `Password reset email sent to ${this.state.email}.`
+        successMessage: `Password reset email sent to ${this.email}.`
       })
     } catch (err) {
       this.setState({
@@ -50,21 +50,16 @@ export default class Login extends Component {
   }
 
   handleInputChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
+    this[e.target.name] = e.target.value
   }
 
   readyToSubmit() {
-    if (validateEmail(this.state.email) && this.state.password) {
-      return true
-    }
-    return false
+    return validateEmail(this.email) && this.password
   }
 
   render() {
     return (
-      <View>
+      <View name="Login">
         <TopBar>
           <TopBarRight>
             <TopBarLink
@@ -84,6 +79,7 @@ export default class Login extends Component {
             onPasswordReset={this.resetPassword}
             loading={this.state.loading}
             buttonText="Login"
+            buttonLoadingText="Loggin you in ..."
           />
         </ViewContent>
       </View>

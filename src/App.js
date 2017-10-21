@@ -3,8 +3,10 @@ import { Route, Redirect, Switch } from 'react-router-dom'
 import Loader from 'components/Loader'
 import TabBar from 'components/TabBar'
 import Login from 'views/Login'
+import Logout from 'views/Logout'
 import Register from 'views/Register'
-import Workout from 'views/Workout'
+import Index from 'views/Index'
+import Log from 'views/Log'
 import ActiveWorkout from 'views/ActiveWorkout'
 import Profile from 'views/Profile'
 import * as api from 'api'
@@ -26,7 +28,7 @@ function PublicRoute ({component: Component, authed, ...rest}) {
       {...rest}
       render={(props) => authed === false
         ? <Component {...rest} />
-        : <Redirect to='/workout' />}
+        : <Redirect to='/' />}
     />
   )
 }
@@ -52,12 +54,14 @@ export default class App extends Component {
   }
 
   async postLogin(user) {
-    const exercises = await api.getAllExercises(api.currentUser().uid)
+    // const exercises = await api.getAllExercises(api.currentUser().uid)
+    // const lastWorkouts = await api.getLastWorkouts(api.currentUser().uid)
     if (this._isMounted) {
       this.setState({
         authed: true,
         loading: false,
-        exercises
+        // exercises,
+        // lastWorkouts
       })
     }
   }
@@ -76,6 +80,11 @@ export default class App extends Component {
             component={Login}
             authed={this.state.authed}
           />
+          <PrivateRoute
+            path='/logout'
+            component={Logout}
+            authed={this.state.authed}
+          />
           <PublicRoute
             path='/register'
             component={Register}
@@ -83,65 +92,61 @@ export default class App extends Component {
           />
           <PrivateRoute
             path='/profile'
-            exact
             component={Profile}
             authed={this.state.authed}
           />
           <PrivateRoute
             path='/workout/random/:effort'
             exact
-            component={ActiveWorkout}
             random={true}
+            component={ActiveWorkout}
             authed={this.state.authed}
-            exercises={this.state.exercises}
           />
           <PrivateRoute
             path='/workout/:id'
             exact
-            component={Workout}
-            random={true}
+            component={ActiveWorkout}
+            random={false}
             authed={this.state.authed}
-            exercises={this.state.exercises}
           />
           <PrivateRoute
-            path='/workout'
+            path='/'
             exact
-            component={Workout}
+            component={Index}
             authed={this.state.authed}
-            exercises={this.state.exercises}
           />
-          {/* <PrivateRoute
-            path='/workout'
-            exact
-            component={Workout}
+          <PrivateRoute
+            path='/log'
+            component={Log}
             authed={this.state.authed}
-            exercises={this.state.exercises}
-          /> */}
+          />
 
-          <Route exact path="/" render={() => (
+          {/* <Route exact path="/" render={() => (
             this.state.authed ? (
               <Redirect to="/workout"/>
             ) : (
               <Redirect to="/login"/>
             )
-          )}/>
+          )}/> */}
 
           <Route render={() => (<Redirect to="/"/>)}/>
         </Switch>
-        {this.state.authed &&
-          <Switch>
-            <Route
-              path='/profile'
-              exact
-              component={TabBar}
-            />
-            <Route
-              path='/workout'
-              exact
-              component={TabBar}
-            />
-          </Switch>
-        }
+        <Switch>
+          <Route
+            path='/profile'
+            component={TabBar}
+          />
+          <Route
+            path='/'
+            exact
+            component={TabBar}
+          />
+          <Route
+            path='/log'
+            exact
+            component={TabBar}
+          />
+        </Switch>
       </div>
     )
   }

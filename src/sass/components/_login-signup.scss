@@ -2,7 +2,7 @@
 .SignupForm {
   .Divider {
     height: 1px;
-    border-width: 0 $spacing;
+    border-width: 0 15px;
     border-style: solid;
     border-color: #fff;
     margin: 0;
@@ -12,10 +12,12 @@
   .LoginEmail,
   .LoginPassword,
   .LoginName {
-    padding: $spacing $spacing;
+    padding: 2 * $spacing;
     border: 0;
     border-radius: 0;
     margin: 0;
+    width: 100%;
+    font-size: 16px;
 
     &:focus {
       box-shadow: none;
@@ -40,7 +42,18 @@
 
   .LoginButton,
   .SignupButton {
-
+    width: 100%;
+    border-radius: 3px;
+    font-size: 16px;
+    line-height: 1;
+    text-align: center;
+    padding: 16px;
+    border: 1px solid #fff;
+    border: 0;
+    background-color: scale-color($accent-color, $lightness: -50%);
+    background-color: $accent-color;
+    color: #fff;
+    // font-weight: bold;
   }
 
   .MessageContainer {
@@ -66,4 +79,34 @@
       background-color: #008e06;
     }
   }
+}
+
+.LoginRegisterLink {
+  display: block;
+  padding: 16px;
+  font-size: 16px;
+  line-height: 1;
+  text-align: center;
+  border: 1px solid #fff;
+  color: #fff;
+  margin-top: 32px;
+  border-radius: $border-radius;
+  text-decoration: none;
+  // font-weight: bold;
+  // position: relative;
+  // text-decoration: none;
+  // padding: 32px 0;
+  // border-top: 1px solid #fff;
+
+  // &::before {
+  //   content: 'or you can';
+  //   position: absolute;
+  //   display: block;
+  //   top: -12px;
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  //   // font-size: 24px;
+  //   padding: 0 8px;
+  //   background-color: $primary-color;
+  // }
 }

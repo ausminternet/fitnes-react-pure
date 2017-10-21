@@ -1,0 +1,16 @@
+.App {
+  position: relative;
+  background-color: $primary-color;
+  background-image:
+    linear-gradient(to bottom, $primary-color 0%, rgba($primary-color, 0) 8%),
+    url('./media/images/bg-pattern.png');
+
+  & .View.Login,
+  & .View.Register,
+  {
+    background-color: transparent;
+    .TopBar {
+      background-color: transparent;
+    }
+  }
+}

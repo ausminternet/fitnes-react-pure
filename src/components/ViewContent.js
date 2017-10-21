@@ -1,9 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export default function View({children}) {
-  return (
-    <div className="ViewContent">
-      {children}
-    </div>
-  )
+const ViewContent = ({children, ...rest}) => {
+  return (<div className="ViewContent" {...rest}>{children}</div>)
 }
+
+ViewContent.PropTypes = {
+  children: PropTypes.node
+}
+
+export default ViewContent
