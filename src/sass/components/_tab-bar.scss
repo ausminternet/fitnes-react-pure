@@ -22,6 +22,8 @@
   justify-content: center;
   opacity: .5;
   width: 100%;
+  text-decoration: none;
+  color: #000;
 
   img {
     width: 28px;
@@ -29,13 +31,18 @@
   }
 
   span {
-    display: none;
+    // display: none;
+    margin-top: 3px;
+    line-height: 1;
+    font-size: 11px;
   }
 
   &.active {
     opacity: 1;
+    color: $accent-color;
 
     &::after {
+      display: none;
       content: '';
       position: absolute;
       bottom: 2px;

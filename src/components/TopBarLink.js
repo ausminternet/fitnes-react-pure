@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 const TopBarLink = ({to, text, icon}) => {
   return (
     <Link to={to} className="TopBarLink">
-      {icon && <img src={icon} alt={text}/>}
+      {icon && <img src={icon.uri} alt={text}/>}
       {text && <span>{text}</span>}
     </Link>
   )

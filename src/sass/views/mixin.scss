@@ -20,7 +20,7 @@
 
 .ViewContent {
   flex-grow: 1;
-  overflow: scroll;
+  overflow-y: scroll;
   padding: 8px;
   -webkit-overflow-scrolling: touch;
 }

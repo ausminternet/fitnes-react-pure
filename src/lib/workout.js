@@ -1,4 +1,4 @@
-import {sampleSize} from 'lodash'
+import sampleSize from 'lodash/sampleSize'
 
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
@@ -83,6 +83,25 @@ export function resetExercises(exercises) {
   })
 }
 
-export function createRandomWorkout(exercises) {
-  return sampleSize(exercises, 5)
+export function createRandomWorkout(nextExercises, lastExercises, number = 6) {
+  let differentExercises =
+    nextExercises.filter(e => lastExercises.indexOf(e.id) === -1)
+  // console.log('initialDiff:', differentExercises)
+  // console.log('last:', lastExercises)
+  if (differentExercises.length > number) {
+    return sampleSize(differentExercises, number)
+  }
+  if (differentExercises.length === number) {
+    // console.log('===')
+    differentExercises = sampleSize(differentExercises, 4)
+    // console.log('newDiff:', differentExercises)
+  }
+  const nextExerciseWithoutDifferent =
+    nextExercises.filter(e => !differentExercises.includes(e))
+  // console.log('nextWithutDiff:', nextExerciseWithoutDifferent)
+  const missing = number - differentExercises.length
+  const sameNextExercises = sampleSize(nextExerciseWithoutDifferent, missing)
+  // console.log('same:', sameNextExercises)
+  // console.log('next', [...sameNextExercises, ...differentExercises])
+  return [...sameNextExercises, ...differentExercises]
 }

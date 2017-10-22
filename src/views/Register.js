@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {NavLink} from 'react-router-dom'
 
 import { signUp } from 'api'
 import { validateEmail } from 'lib/utils'
@@ -48,7 +47,7 @@ export default class Register extends Component {
       <View name="Register">
         <TopBar>
           <TopBarLeft>
-            <TopBarLink to="/Login" text="Login" icon={BackIcon} />
+            <TopBarLink to="/Login" text="Login" icon={{uri: BackIcon}} />
           </TopBarLeft>
         </TopBar>
         <ViewContent>

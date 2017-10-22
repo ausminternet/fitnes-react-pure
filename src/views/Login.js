@@ -65,7 +65,7 @@ export default class Login extends Component {
             <TopBarLink
               to="/register"
               text="Create account"
-              icon={RegisterIcon}
+              icon={{uri: RegisterIcon}}
             />
           </TopBarRight>
         </TopBar>

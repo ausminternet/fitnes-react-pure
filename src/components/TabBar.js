@@ -17,7 +17,7 @@ const TabBar = ({children}) => {
       text: 'Start',
     },
     {
-      to: '/log',
+      to: '/logs',
       icon: LogIcon,
       iconActive: LogIconActive,
       text: 'Log',

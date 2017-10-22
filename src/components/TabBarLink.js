@@ -1,15 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {NavLink, withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 
-const TabBarLink = ({to, icon, iconActive, text, location}) => {
+const TabBarLink = ({to, icon, iconActive, text, match}) => {
+  const isIndex = match.path === '/'
+  let isActive = false
+
+  if (to === '/') {
+    isActive = isIndex
+  } else {
+    isActive = match.path.indexOf(to) !== -1
+  }
+
+  const className = [
+    'TabBarLink',
+    isActive ? 'active' : null,
+  ].join(' ')
+
   return (
-    <NavLink to={to} exact className="TabBarLink" activeClassName="active">
-      {location.pathname === to
+    <Link to={to} className={className}>
+      {isActive
         ? <img src={iconActive.uri} alt={text}/>
         : <img src={icon.uri} alt={text}/>}
       {text && <span>{text}</span>}
-    </NavLink>
+    </Link>
   )
 }
 
@@ -22,7 +36,7 @@ TabBarLink.propTypes = {
     uri: PropTypes.string,
   }),
   text: PropTypes.string,
-  location: PropTypes.object
+  match: PropTypes.object
 }
 
 export default withRouter(TabBarLink)

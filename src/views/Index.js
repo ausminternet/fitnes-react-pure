@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { TopBar, TopBarCenter } from 'components/TopBar'
-import Sheet from 'components/Sheet'
 import RandomWorkouts from 'components/RandomWorkouts'
 import Loader from 'components/Loader'
-import ActiveWorkout from 'views/ActiveWorkout'
 import View from 'components/View'
 import ViewContent from 'components/ViewContent'
 import * as api from 'api'
@@ -28,7 +26,7 @@ export default class Index extends Component {
     }
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillUnmount(nextProps, nextState) {
     this._isMounted = false
   }
 

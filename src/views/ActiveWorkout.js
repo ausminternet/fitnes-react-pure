@@ -14,28 +14,36 @@ import Stats from 'components/Stats'
 import View from 'components/View'
 
 export default class ActiveWorkout extends Component {
-  constructor({computedMatch, random, id}) {
+  constructor({computedMatch}) {
     super()
-    this.effort = computedMatch.params.effort
-    this.random = random
-    this.id = id
-    this.state = {
-      loading: true,
-      currentExercise: undefined,
-      currentRepeats: 0,
-      exercises: [],
-      done: false,
-      startedAt: null,
-      paused: false,
+    if (window.localStorage.getItem('sweathard/ActiveWorkout')) {
+      this.state = JSON.parse(window.localStorage.getItem('sweathard/ActiveWorkout'))
+    } else {
+      this.state = {
+        type: 'random',
+        effort: computedMatch.params.effort,
+        loading: true,
+        currentExercise: undefined,
+        currentRepeats: 0,
+        exercises: [],
+        done: false,
+        startedAt: null,
+        paused: false,
+        active: false,
+        offset: 0,
+      }
     }
+    console.log('constructorState: ', this.state)
   }
 
   async componentDidMount() {
     this._isMounted = true
-    this.exercises = await api.getAllExercises(api.currentUser().uid)
-    if (this.random) {
-      this.prepareRandomWorkout(this.effort)
-      this.start()
+    if (!this.state.active) {
+      this.exercises = await api.getAllExercises(api.currentUser().uid)
+      if (this.state.type === 'random') {
+        await this.prepareRandomWorkout()
+        this.start()
+      }
     }
   }
 
@@ -43,9 +51,25 @@ export default class ActiveWorkout extends Component {
     this._isMounted = false
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.active) {
+      this.saveState(nextState)
+    }
+  }
+
   async prepareRandomWorkout() {
-    this.exercises = workout.setEffort(this.exercises, this.effort)
+    const lastExercises = await api.getLastExercises(api.currentUser().uid)
+    this.exercises = workout.createRandomWorkout(this.exercises, lastExercises)
+    this.exercises = workout.setEffort(this.exercises, this.state.effort)
     this.prepareNextExercise(this.exercises)
+  }
+
+  saveState(state) {
+    window.localStorage.setItem('sweathard/ActiveWorkout', JSON.stringify(state))
+  }
+
+  removeSavedState() {
+    window.localStorage.removeItem('sweathard/ActiveWorkout')
   }
 
   prepareNextExercise(exercises) {
@@ -61,12 +85,15 @@ export default class ActiveWorkout extends Component {
   }
 
   start() {
-    this.setState({
-      exercises: this.exercises,
-      currentExercise: this.nextExercise,
-      currentRepeats: this.nextRepeats,
-      loading: false,
-      startedAt: Date.now()
+    this.setState(() => {
+      return {
+        exercises: this.exercises,
+        currentExercise: this.nextExercise,
+        currentRepeats: this.nextRepeats,
+        loading: false,
+        startedAt: Date.now(),
+        active: true,
+      }
     })
   }
 
@@ -78,8 +105,10 @@ export default class ActiveWorkout extends Component {
   }
 
   cancel = () => {
+    this.removeSavedState()
     if (window.confirm('Cancel workout?')) {
       this.setState({
+        active: false,
         redirect: true,
         redirectTo: '/workout'
       })
@@ -87,12 +116,13 @@ export default class ActiveWorkout extends Component {
   }
 
   tick = () => {
+    if (this.state.paused) return
     const exercises = workout.doCurrentRepeats(
       this.state.exercises,
       this.state.currentExercise.id,
       this.state.currentRepeats
     )
-    this.setState({exercises})
+    this.setState({ exercises })
     if (workout.done(exercises)) {
       this.finish()
     } else {
@@ -104,16 +134,17 @@ export default class ActiveWorkout extends Component {
     }
   }
 
-  handleElapsedTime = (elapsed) => {
-    this.elapsed = elapsed
+  handleElapsedTime = (elapsed, offset) => {
+    this.setState({elapsed, offset})
   }
 
   async finish() {
     this.setState({loading: true})
-    await api.saveWorkout(api.currentUser().uid, {
+    const logId = await api.saveWorkout(api.currentUser().uid, {
       startedAt: this.state.startedAt,
-      elapsedTime: 0,
-      // elapsedTime: this.elapsed,
+      elapsedTime: this.state.elapsed,
+      type: this.state.type,
+      effort: this.state.tickeffort,
       exercises: this.state.exercises.map(e => {
         return {
           id: e.id,
@@ -123,9 +154,11 @@ export default class ActiveWorkout extends Component {
       })
     })
     this.setState({
+      active: false,
       redirect: true,
-      redirectTo: '/workout'
+      redirectTo: `/logs/${logId}`
     })
+    this.removeSavedState()
   }
 
   render() {
@@ -167,6 +200,7 @@ export default class ActiveWorkout extends Component {
           <TimerContainer
             startTime={this.state.startedAt}
             paused={this.state.paused}
+            onChange={this.handleElapsedTime}
           />
           <Stats exercises={this.state.exercises} />
         </View>

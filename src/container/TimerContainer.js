@@ -5,43 +5,69 @@ class TimerContainer extends Component {
   constructor({startTime, paused, onChange}) {
     super()
     this.onChange = onChange
-    this.startTime = startTime
-    this.elapsed = 0
-    this.offset = 0
-    this.state = {paused}
+    if (window.localStorage.getItem('sweathard/Timer') !== null) {
+      this.state = JSON.parse(window.localStorage.getItem('sweathard/Timer'))
+    } else {
+      this.state = {
+        time: '00:00:00',
+        startTime,
+        offset: 0,
+        paused,
+      }
+    }
   }
 
   componentWillReceiveProps({startTime, paused}) {
-    if (startTime === this.startTime && paused === this.state.paused) return
-    if (startTime === this.startTime) {
+    if (startTime === this.state.startTime && paused === this.state.paused) return
+    if (startTime === this.state.startTime) {
       if (paused) {
         this.stopTimer()
-        this.pausedAt = Date.now()
-        this.setState({paused})
+        const pausedAt = Date.now()
+        this.setState({paused, pausedAt})
       } else {
         this.startTimer()
-        this.offset = new Date() - this.pausedAt + this.offset
-        this.setState({paused})
+        const offset = new Date() - this.state.pausedAt + this.state.offset
+        this.setState({paused, offset})
       }
     }
-    if (startTime !== this.startTime) {
-      this.setState({paused})
-      this.startTime = startTime
-      this.elapsed = 0
-      this.offset = 0
+    if (startTime !== this.state.startTime) {
+      this.setState({
+        paused,
+        startTime,
+        elapsed: 0,
+        offset: 0,
+      })
     }
   }
 
   componentDidMount () {
-    this.startTimer()
+    if (!this.state.paused) this.startTimer()
   }
 
   componentWillUnmount() {
     this.stopTimer()
+    this.removeSavedState()
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    this.saveState(nextState)
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.time !== nextState.time ||
+      this.state.paused !== nextState.paused
+  }
+
+  saveState(state) {
+    window.localStorage.setItem('sweathard/Timer', JSON.stringify(state))
+  }
+
+  removeSavedState() {
+    window.localStorage.removeItem('sweathard/Timer')
   }
 
   startTimer() {
-    this.tickTimer = setInterval(this.tick, 50)
+    this.tickTimer = setInterval(this.tick, 100)
     this.onChangeTimer = setInterval(this.handleElapsedTime, 1000)
   }
 
@@ -51,10 +77,16 @@ class TimerContainer extends Component {
   }
 
   tick = () => {
-    if (!this.paused) {
-      this.elapsed = new Date() - this.startTime - this.offset
-      this.setState({time: new Date(this.elapsed).toISOString().substr(11, 8)})
+    if (!this.state.paused) {
+      const elapsed = new Date() - this.state.startTime - this.state.offset
+      this.setState({
+        elapsed,
+        time: new Date(elapsed).toISOString().substr(11, 8)})
     }
+  }
+
+  handleElapsedTime = () => {
+    this.onChange(this.state.elapsed, this.state.offset)
   }
 
   render() {
@@ -62,7 +94,8 @@ class TimerContainer extends Component {
       <Timer
         paused={this.state.paused}
         pausedText="Workout paused."
-        time={this.state.time} />
+        time={this.state.time}
+      />
     )
   }
 }

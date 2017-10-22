@@ -8,7 +8,8 @@
   color: $primary-color;
   color: #fff;
   border-radius: $border-radius;
-  border: 2px solid $accent-color;
+  // border: 2px solid $accent-color;
+  border: 0;
   font-size: 18px;
   line-height: 1;
   padding: (2 * $spacing) (1.5 * $spacing);

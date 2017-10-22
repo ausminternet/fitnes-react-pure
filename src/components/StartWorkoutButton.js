@@ -6,6 +6,7 @@ export default function StartWorkoutButton ({to, children}) {
     <Link
       className="StartWorkoutButton"
       to={to}
+      onTouchStart={() => true}
     >
       {children}
     </Link>

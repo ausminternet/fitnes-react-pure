@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Route, Redirect, Switch } from 'react-router-dom'
+import { Route, Redirect, Switch, withRouter } from 'react-router-dom'
 import Loader from 'components/Loader'
 import TabBar from 'components/TabBar'
 import Login from 'views/Login'
 import Logout from 'views/Logout'
 import Register from 'views/Register'
 import Index from 'views/Index'
+import Logs from 'views/Logs'
 import Log from 'views/Log'
 import ActiveWorkout from 'views/ActiveWorkout'
 import Profile from 'views/Profile'
@@ -33,7 +34,7 @@ function PublicRoute ({component: Component, authed, ...rest}) {
   )
 }
 
-export default class App extends Component {
+class App extends Component {
   state = {
     authed: false,
     loading: true,
@@ -43,27 +44,51 @@ export default class App extends Component {
     this._isMounted = true
     this.removeListener = api.auth.onAuthStateChanged((user) => {
       if (user) {
-        this.postLogin(user)
+        this.postLogin()
       } else {
-        this.setState({
-          authed: false,
-          loading: false
-        })
+        this.postLogout()
       }
     })
   }
 
-  async postLogin(user) {
-    // const exercises = await api.getAllExercises(api.currentUser().uid)
-    // const lastWorkouts = await api.getLastWorkouts(api.currentUser().uid)
-    if (this._isMounted) {
-      this.setState({
-        authed: true,
-        loading: false,
-        // exercises,
-        // lastWorkouts
-      })
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
+    this.saveState(nextProps.location.pathname)
+  }
+
+  saveState(path) {
+    window.localStorage
+      .setItem('sweathard/Path', JSON.stringify(path))
+  }
+
+  removeSavedState() {
+    window.localStorage.removeItem('sweathard/Path')
+  }
+
+  postLogin(user) {
+    const initialStateAfterLogin = {
+      authed: true,
+      loading: false,
     }
+    const path =
+      JSON.parse(window.localStorage.getItem('sweathard/Path'))
+    if (path) {
+      console.log('weaveapath')
+      this.setState({
+        redirect: true,
+        path,
+        ...initialStateAfterLogin
+      })
+    } else {
+      this.setState(initialStateAfterLogin)
+    }
+  }
+
+  postLogout() {
+    this.setState({
+      authed: false,
+      loading: false
+    })
   }
 
   componentWillUnmount () {
@@ -72,6 +97,10 @@ export default class App extends Component {
   }
 
   render() {
+    if (this.state.path && !this.redirected) {
+      this.redirected = true
+      return <Redirect to={this.state.path} />
+    }
     return this.state.loading === true ? <Loader /> : (
       <div className="App">
         <Switch>
@@ -116,8 +145,13 @@ export default class App extends Component {
             authed={this.state.authed}
           />
           <PrivateRoute
-            path='/log'
+            path='/logs/:id'
             component={Log}
+            authed={this.state.authed}
+          />
+          <PrivateRoute
+            path='/logs'
+            component={Logs}
             authed={this.state.authed}
           />
 
@@ -142,8 +176,7 @@ export default class App extends Component {
             component={TabBar}
           />
           <Route
-            path='/log'
-            exact
+            path='/logs'
             component={TabBar}
           />
         </Switch>
@@ -151,3 +184,5 @@ export default class App extends Component {
     )
   }
 }
+
+export default withRouter(App)

@@ -1,9 +1,18 @@
 .App {
   position: relative;
   background-color: $primary-color;
-  background-image:
-    linear-gradient(to bottom, $primary-color 0%, rgba($primary-color, 0) 8%),
-    url('./media/images/bg-pattern.png');
+  background:
+    linear-gradient(
+      to bottom, 
+      scale-color($primary-color, $lightness: 0%) 0%,
+      rgba($primary-color, 0) 3%),
+    url('./media/images/bg-pattern-big.png') 0 0 / 200px 200px;
+
+    // @media (-webkit-min-device-pixel-ratio: 2), 
+    // (min-resolution: 192dpi) { 
+
+    //   background:url('./media/images/bg-pattern.png');
+    // }
 
   & .View.Login,
   & .View.Register,
