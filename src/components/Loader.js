@@ -3,11 +3,11 @@ import React from 'react'
 const Loader = ({children}) => {
   return (
     <div className="Loader">
-      <a-loader>
+      <div className="circle">
         <span></span>
         <span></span>
         <span></span>
-      </a-loader>
+      </div>
       <p className="text">{children}</p>
     </div>
   )

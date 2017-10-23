@@ -134,17 +134,20 @@ export default class ActiveWorkout extends Component {
     }
   }
 
-  handleElapsedTime = (elapsed, offset) => {
-    this.setState({elapsed, offset})
+  handleElapsedTime = (elapsed) => {
+    this.setState({elapsed})
   }
 
   async finish() {
-    this.setState({loading: true})
+    this.setState({
+      loading: true,
+      loadingText: 'Saving your workout.'
+    })
     const logId = await api.saveWorkout(api.currentUser().uid, {
       startedAt: this.state.startedAt,
       elapsedTime: this.state.elapsed,
       type: this.state.type,
-      effort: this.state.tickeffort,
+      effort: this.state.effort,
       exercises: this.state.exercises.map(e => {
         return {
           id: e.id,
@@ -168,7 +171,7 @@ export default class ActiveWorkout extends Component {
 
     if (this.state.loading) {
       return (
-        <Loader />
+        <Loader>{this.state.loadingText}</Loader>
       )
     }
 

@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom'
 
 import { signUp } from 'api'
 import { validateEmail } from 'lib/utils'
+import SwipeView from 'components/SwipeView'
 
 import { TopBar, TopBarLeft } from 'components/TopBar'
 import ViewContent from 'components/ViewContent'
@@ -42,9 +44,16 @@ export default class Register extends Component {
     return validateEmail(this.email) && this.password && this.name
   }
 
+  handleSwipe = () => {
+    this.setState({
+      redirect: true,
+      to: '/login'
+    })
+  }
+
   render() {
-    return (
-      <View name="Register">
+    return this.state.redirect ? <Redirect to={this.state.to} /> : (
+      <SwipeView onSwipe={this.handleSwipe} name="Register">
         <TopBar>
           <TopBarLeft>
             <TopBarLink to="/Login" text="Login" icon={{uri: BackIcon}} />
@@ -63,7 +72,7 @@ export default class Register extends Component {
             showName={true}
           />
         </ViewContent>
-      </View>
+      </SwipeView>
     )
   }
 }

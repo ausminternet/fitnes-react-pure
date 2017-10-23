@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom'
 
 import * as api from 'api'
 
@@ -7,7 +8,7 @@ import {
   TopBarLeft,
   TopBarCenter,
 } from 'components/TopBar'
-import View from 'components/View'
+import SwipeView from 'components/SwipeView'
 import Loader from 'components/Loader'
 import ViewContent from 'components/ViewContent'
 import TopBarLink from 'components/TopBarLink'
@@ -34,14 +35,22 @@ class Log extends Component {
     }
   }
 
-  componentDidUnmount(nextProps, nextState) {
+  componentWillUnmount(nextProps, nextState) {
     this._isMounted = false
+  }
+
+  handleSwipe = () => {
+    this.setState({
+      redirect: true,
+      to: '/logs'
+    })
   }
 
   render() {
     const w = this.state.workout
-    return (
-      <View >
+
+    return this.state.redirect ? <Redirect to={this.state.to} /> : (
+      <SwipeView onSwipe={this.handleSwipe}>
         <TopBar>
           <TopBarLeft>
             <TopBarLink icon={{uri: BackIcon}} to={'/logs'} text="Back"/>
@@ -77,7 +86,7 @@ class Log extends Component {
               </div>
           }
         </ViewContent>
-      </View>
+      </SwipeView>
     )
   }
 }

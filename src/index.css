@@ -55,7 +55,7 @@ input:-webkit-autofill:focus {
   flex-direction: column;
   align-items: center;
   justify-content: center; }
-  .Loader a-loader {
+  .Loader .circle {
     display: flex;
     justify-content: center; }
 
@@ -66,7 +66,7 @@ input:-webkit-autofill:focus {
     opacity: 1; }
   100% {
     opacity: .1; } }
-    .Loader a-loader span {
+    .Loader .circle span {
       display: inline-block;
       width: 1rem;
       height: 1rem;
@@ -76,16 +76,20 @@ input:-webkit-autofill:focus {
       animation-duration: 1.4s;
       animation-iteration-count: infinite;
       animation-fill-mode: both; }
-      .Loader a-loader span:nth-child(2) {
+      .Loader .circle span:nth-child(2) {
         animation-delay: .2s; }
-      .Loader a-loader span:nth-child(3) {
+      .Loader .circle span:nth-child(3) {
         animation-delay: .4s; }
-      .Loader a-loader span:not(:first-child) {
+      .Loader .circle span:not(:first-child) {
         margin-left: .3em; }
-      .View .Loader a-loader span {
+      .View .Loader .circle span {
         background-color: #c0392b; }
+    .Loader .circle.inline {
+      font-size: inherit; }
   .Loader .text {
-    height: 40px; }
+    height: 40px;
+    font-size: 24px;
+    color: #fff; }
 
 .LoginForm .Divider,
 .SignupForm .Divider {
@@ -296,7 +300,7 @@ input:-webkit-autofill:focus {
     opacity: .5; }
   .TopBarButton img,
   .TopBarLink img {
-    height: 22px;
+    height: 25px;
     padding-right: 6px; }
     .TopBarButton img:last-child,
     .TopBarLink img:last-child {
@@ -328,8 +332,8 @@ input:-webkit-autofill:focus {
   text-decoration: none;
   color: #000; }
   .TabBarLink img {
-    width: 28px;
-    height: 28px; }
+    width: 25px;
+    height: 25px; }
   .TabBarLink span {
     margin-top: 3px;
     line-height: 1;
