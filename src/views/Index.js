@@ -34,7 +34,7 @@ export default class Index extends Component {
     return (
       <View name="Workout">
         <TopBar>
-          <TopBarCenter>Your workouts</TopBarCenter>
+          <TopBarCenter>Workouts</TopBarCenter>
         </TopBar>
         {this.state.loading &&
           <Loader />

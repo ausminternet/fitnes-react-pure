@@ -242,15 +242,14 @@ input:-webkit-autofill:focus {
 
 .TopBar {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   right: 0;
   left: 0;
   display: flex;
   align-items: stretch;
-  justify-content: space-between;
-  min-height: 44px;
-  max-height: 44px;
+  min-height: 50px;
+  max-height: 50px;
   font-size: 17px;
   color: #fff;
   background-color: #444; }
@@ -261,6 +260,11 @@ input:-webkit-autofill:focus {
   align-items: stretch;
   width: 30%; }
 
+.TopBarLeft {
+  width: auto; }
+  .TopBarLeft span {
+    display: none; }
+
 .TopBarRight {
   justify-content: flex-end; }
   .TopBarRight:last-child:first-child {
@@ -269,15 +273,14 @@ input:-webkit-autofill:focus {
 .TopBarCenter {
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding-left: 20px;
   width: 40%;
-  font-weight: bold; }
-  .TopBarCenter:first-child {
-    margin-left: 30%; }
+  flex-grow: 1; }
   .TopBarCenter:last-child {
     margin-right: 30%; }
   .TopBarCenter h1 {
-    font-size: 17px; }
+    font-weight: 400;
+    font-size: 22px; }
 
 .TopBarButton,
 .TopBarLink {
@@ -309,19 +312,21 @@ input:-webkit-autofill:focus {
 .TabBar {
   position: absolute;
   z-index: 1;
+  top: 50px;
   right: 0;
-  bottom: 0;
   left: 0;
   display: flex;
   align-items: stretch;
   justify-content: space-around;
   min-height: 49px;
   max-height: 49px;
-  border-top: 1px solid #cdcdcd;
   background-color: #fff;
-  background-color: #f8f8f8; }
+  background-color: #f8f8f8;
+  background-color: #444;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
 
 .TabBarLink {
+  border-bottom: 5px solid transparent;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -333,23 +338,18 @@ input:-webkit-autofill:focus {
   color: #000; }
   .TabBarLink img {
     width: 25px;
-    height: 25px; }
+    height: 25px;
+    display: none; }
   .TabBarLink span {
     margin-top: 3px;
     line-height: 1;
-    font-size: 11px; }
+    font-size: 14px;
+    color: #fff;
+    text-transform: uppercase; }
   .TabBarLink.active {
     opacity: 1;
-    color: #c0392b; }
-    .TabBarLink.active::after {
-      display: none;
-      content: '';
-      position: absolute;
-      bottom: 2px;
-      width: 5px;
-      height: 5px;
-      border-radius: 100%;
-      background-color: #c0392b; }
+    color: #c0392b;
+    border-bottom: 5px solid #c0392b; }
 
 .RandomWorkouts .buttons {
   display: flex;
@@ -499,10 +499,10 @@ input:-webkit-autofill:focus {
   .Sheet .View {
     height: calc(100vh - 44px - 26px);
     margin-top: 60px; }
-  .View.withTabBar {
-    padding-bottom: 49px; }
   .View.withTopBar {
     padding-top: 44px; }
+  .View.withTabBar {
+    padding-top: 113px; }
 
 .ViewContent {
   flex-grow: 1;
