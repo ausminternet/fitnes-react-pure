@@ -22,7 +22,7 @@ const RandomWorkouts = ({loading, efforts, hasExercises}) => {
         {!loading && hasExercises &&
           efforts.map((e, i) => (
             <StartRandomWorkoutButton key={i} effort={e}>
-              {e}
+              {e}%
             </StartRandomWorkoutButton>
           ))
         }

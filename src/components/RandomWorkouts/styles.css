@@ -1,5 +1,9 @@
+.random-workouts {
+  margin-bottom: 32px;
+}
+
 .random-workouts__buttons {
   display: flex;
   flex-direction: row;
-  /* height: 100px; */
+  height: 100px;
 }

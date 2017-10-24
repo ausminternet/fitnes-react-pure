@@ -42,6 +42,26 @@
   }
 }
 
+.loader--delayed .loader__circles {
+  animation-name: loader-delayed;
+  animation-duration: 1.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes loader-delayed {
+  0% {
+    opacity: 0;
+  }
+
+  80% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .loader__circles {
   justify-content: center;
 }

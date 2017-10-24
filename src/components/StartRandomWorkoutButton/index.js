@@ -2,9 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import StartWorkoutButton from 'components/StartWorkoutButton'
 
+import './styles.css'
+
 const StartRandomWorkoutButton = ({effort, children}) => {
   return (
-    <StartWorkoutButton to={'/workout/random/' + effort}
+    <StartWorkoutButton
+      className="start-random-workout-button"
+      to={'/workout/random/' + effort}
     >
       {children}
     </StartWorkoutButton>

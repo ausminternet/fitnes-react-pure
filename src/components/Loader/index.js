@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 
 import './styles.css'
 
-const Loader = ({children, full}) => {
+const Loader = ({children, full, delayed = true}) => {
   const className = [
     'loader',
-    full ? 'loader--full' : ''
+    full ? 'loader--full' : '',
+    delayed ? 'loader--delayed' : '',
   ].join(' ')
 
   return (

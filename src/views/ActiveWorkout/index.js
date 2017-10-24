@@ -12,7 +12,6 @@ import CurrentExerciseName from 'components/CurrentExerciseName'
 import CurrentExerciseRepeats from 'components/CurrentExerciseRepeats'
 import Loader from 'components/Loader'
 import Stats from 'components/Stats'
-import View from 'components/View'
 
 import './styles.css'
 
@@ -174,7 +173,7 @@ export default class ActiveWorkout extends Component {
 
     if (this.state.loading) {
       return (
-        <Loader full={true}>{this.state.loadingText}</Loader>
+        <Loader full={true} delayed={false}>{this.state.loadingText}</Loader>
       )
     }
 

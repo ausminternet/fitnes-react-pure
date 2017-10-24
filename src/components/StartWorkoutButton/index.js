@@ -4,11 +4,16 @@ import {Link} from 'react-router-dom'
 import PrimaryButton from 'components/PrimaryButton'
 import './styles.css'
 
-export default function StartWorkoutButton ({to, children}) {
+const StartWorkoutButton = ({to, children, className}) => {
+  className = [
+    'start-workout-button',
+    className
+  ].join(' ')
+
   return (
     <PrimaryButton>
       <Link
-        className="start-workout-button"
+        className={className}
         to={to}
         onTouchStart={() => true}
       >
@@ -17,3 +22,5 @@ export default function StartWorkoutButton ({to, children}) {
     </PrimaryButton>
   )
 }
+
+export default StartWorkoutButton

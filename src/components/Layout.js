@@ -31,7 +31,7 @@ const Layout = ({
 }
 
 Layout.PropTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.node.isRequired,
   name: PropTypes.string,
   buttonLeft: PropTypes.node,
   buttonRight: PropTypes.node,
