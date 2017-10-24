@@ -1,5 +1,5 @@
 .TabBar {
-  position: absolute;
+  position: fixed;
   z-index: $z-tabbar;
   right: 0;
   bottom: 0;
@@ -7,8 +7,7 @@
   display: flex;
   align-items: stretch;
   justify-content: space-around;
-  min-height: $tabbar-height;
-  max-height: $tabbar-height;
+  height: $tabbar-height;
   border-top: 1px solid $border-color;
   background-color: #fff;
   background-color: #f8f8f8;

@@ -1,9 +1,7 @@
 .ActiveWorkout {
-
-  .TopBar {
-    min-height: 70px;
-  }
-
+  position: fixed;
+  top: 0;
+  bottom: 0;
   padding: 8px;
 
   .CancelWorkoutButton,
@@ -16,7 +14,7 @@
     font-size: 17px;
     color: #fff;
     position: absolute;
-    top: 10px;
+    top: 30px;
     left: 5px;
     z-index: 101;
   }
@@ -30,9 +28,9 @@
   .PauseWorkoutButton {
     position: absolute;
     z-index: 101;
-    top: 10px;
+    top: 30px;
     right: 5px;
-    transform: scale(1.25)
+    // transform: scale(1.25)
   }
 }
 

@@ -7,22 +7,17 @@ html {
   box-sizing: inherit; }
 
 html {
-  position: fixed; }
-
-html,
-body,
-#root,
-.App {
-  height: 100vh;
-  width: 100vw; }
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh; }
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  background-color: #444; }
+  -webkit-tap-highlight-color: transparent; }
 
 .App {
   display: flex;
@@ -225,8 +220,8 @@ input:-webkit-autofill:focus {
     .Sheet .CloseSheetButton:focus {
       outline: none; }
     .Sheet .CloseSheetButton img {
-      height: 26px;
-      width: 26px; }
+      height: 25px;
+      width: 25px; }
 
 @keyframes slideup {
   from {
@@ -241,19 +236,21 @@ input:-webkit-autofill:focus {
     transform: translateY(100%); } }
 
 .TopBar {
-  position: absolute;
-  z-index: 1;
+  position: fixed;
   top: 0;
-  right: 0;
   left: 0;
+  right: 0;
+  z-index: 1;
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  min-height: 44px;
-  max-height: 44px;
+  height: calc(44px + 20px);
+  height: calc(44px + env(safe-area-inset-top));
   font-size: 17px;
   color: #fff;
-  background-color: #444; }
+  background-color: #444;
+  padding-top: 20px;
+  padding-top: env(safe-area-inset-top); }
 
 .TopBarRight,
 .TopBarLeft {
@@ -307,7 +304,7 @@ input:-webkit-autofill:focus {
       padding-right: 0; }
 
 .TabBar {
-  position: absolute;
+  position: fixed;
   z-index: 1;
   right: 0;
   bottom: 0;
@@ -315,8 +312,7 @@ input:-webkit-autofill:focus {
   display: flex;
   align-items: stretch;
   justify-content: space-around;
-  min-height: 49px;
-  max-height: 49px;
+  height: 49px;
   border-top: 1px solid #cdcdcd;
   background-color: #fff;
   background-color: #f8f8f8; }
@@ -410,7 +406,7 @@ input:-webkit-autofill:focus {
     margin-bottom: 16px;
     color: #fff;
     width: 100%;
-    padding: 19px 8px 16px;
+    padding: 40px 8px 16px;
     text-align: center;
     background-color: #444;
     position: absolute;
@@ -502,7 +498,8 @@ input:-webkit-autofill:focus {
   .View.withTabBar {
     padding-bottom: 49px; }
   .View.withTopBar {
-    padding-top: 44px; }
+    padding-top: calc(44px + 20px);
+    padding-top: calc(44px + env(safe-area-inset-top)); }
 
 .ViewContent {
   flex-grow: 1;
@@ -526,9 +523,10 @@ input:-webkit-autofill:focus {
   margin-top: 100px; }
 
 .ActiveWorkout {
+  position: fixed;
+  top: 0;
+  bottom: 0;
   padding: 8px; }
-  .ActiveWorkout .TopBar {
-    min-height: 70px; }
   .ActiveWorkout .CancelWorkoutButton,
   .ActiveWorkout .RestartWorkoutButton,
   .ActiveWorkout .PauseWorkoutButton {
@@ -546,18 +544,17 @@ input:-webkit-autofill:focus {
     .ActiveWorkout .CancelWorkoutButton img,
     .ActiveWorkout .RestartWorkoutButton img,
     .ActiveWorkout .PauseWorkoutButton img {
-      height: 26px;
-      width: 26px; }
+      height: 25px;
+      width: 25px; }
   .ActiveWorkout .CancelWorkoutButton {
     font-size: 17px;
     color: #fff;
     position: absolute;
-    top: 10px;
+    top: 30px;
     left: 5px;
     z-index: 101; }
   .ActiveWorkout .PauseWorkoutButton {
     position: absolute;
     z-index: 101;
-    top: 10px;
-    right: 5px;
-    transform: scale(1.25); }
+    top: 30px;
+    right: 5px; }

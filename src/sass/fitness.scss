@@ -20,3 +20,40 @@
 @import 'views/login-signup';
 @import 'views/active-workout';
 // @import 'views/finished-workout';
+
+// html {
+//   margin: 0;
+//   padding: 0;
+//   width: 100vw;
+//   height: 100vh;
+//   box-sizing: border-box;
+//   border: 1px solid green;
+//   // position: fixed;
+// }
+
+// .TabBar {
+//   position: fixed;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   height: 50px;
+//   background-color: #cdcdcd;
+// }
+
+// .TopBar {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   height: 50px;
+//   background-color: #cdcdcd;
+
+//   /* Status bar height on iOS 10 */
+//   padding-top: 20px;
+  
+//       /* Status bar height on iOS 11.0 */
+//       // padding-top: constant(safe-area-inset-top);
+  
+//       /* Status bar height on iOS 11+ */
+//       padding-top: env(safe-area-inset-top);
+// }

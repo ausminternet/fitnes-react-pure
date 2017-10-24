@@ -11,3 +11,8 @@ ReactDOM.render(
   </BrowserRouter>
   , document.getElementById('root'))
 // registerServiceWorker()
+// setInterval(() => {
+//   var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+//   var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+//   document.getElementById('root').innerHTML = `width: ${w}, height: ${h}`
+// }, 100)
