@@ -11,6 +11,7 @@ import Log from 'views/Log'
 import ActiveWorkout from 'views/ActiveWorkout'
 import Profile from 'views/Profile'
 import * as api from 'api'
+import './app.css'
 
 function PrivateRoute ({component: Component, authed, ...rest}) {
   return (

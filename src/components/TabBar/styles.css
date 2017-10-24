@@ -1,0 +1,14 @@
+.tab-bar {
+  position: fixed;
+  z-index: var(--z-tab-bar);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  height: var(--tab-bar-height);
+  border-top: 1px solid var(--border-color);
+  background-color: #fff;
+  background-color: var(--tab-bar-bg-color);
+}

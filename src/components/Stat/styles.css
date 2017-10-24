@@ -1,0 +1,73 @@
+.stat {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  width: calc(50% - (0.5 * var(--spacing)));
+  padding: calc(2 * var(--spacing)) calc(1.5 * var(--spacing));
+  border-radius: var(--border-radius);
+  margin: calc(.5 * var(--spacing));
+  background-color: var(--bg-color-light);
+}
+
+.stat:nth-child(odd) {
+  margin-left: 0;
+}
+
+.stat:nth-child(even) {
+  margin-right: 0;
+}
+
+.stat:last-child,
+.stat:nth-last-child(2):nth-child(odd) {
+  margin-bottom: 0;
+}
+
+.stat__progressbar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  height: 6px;
+}
+
+.stat__progress {
+  height: inherit;
+  transition: all .5s ease;
+  background-color: var(--accent-color);
+}
+
+.stat__name {
+  height: 20px;
+}
+
+@keyframes stat-done-animation {
+  0% {
+    transform: scale(.5);
+  }
+
+  10% {
+    transform: scale(.5);
+  }
+
+  70% {
+    transform: scale(2);
+  }
+
+  100% {
+    transform: scale(1.5);
+  }
+}
+
+.stat__done {
+  height: 20px;
+  animation-name: stat-done-animation;
+  animation-duration: .2s;
+  animation-fill-mode: both;
+}
+
+.stat__repeats {
+  height: 20px;
+  font-weight: 500;
+}

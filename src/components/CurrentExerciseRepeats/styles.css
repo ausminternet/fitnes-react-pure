@@ -1,0 +1,10 @@
+.current-exercise-repeats {
+  font-size: 150px;
+  font-weight: 300;
+  line-height: 1;
+  text-align: center;
+}
+
+.current-exercise-repeats.is-paused {
+  opacity: .5;
+}

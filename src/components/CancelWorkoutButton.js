@@ -1,19 +1,22 @@
 import React from 'react'
-// import {NavLink} from 'react-router-dom'
+import PropTypes from 'prop-types'
+
+import ActiveWorkoutIconButton from 'components/ActiveWorkoutIconButton'
+
 import CancelIcon from 'media/icons/white/delete-filled.png'
 
-export default function CancelWorkoutButton({onClick, showIcon = true, children}) {
+const CancelWorkoutButton = ({onClick, children}) => {
   return (
-    <button
-      className="CancelWorkoutButton"
+    <ActiveWorkoutIconButton
+      className="cancel-button"
       onClick={onClick}
     >
-      {showIcon &&
-        <img src={CancelIcon} alt="Back"/>
-      }
-      {children &&
-        <span className="text">{children}</span>
-      }
-    </button>
+      <img src={CancelIcon} alt="cancel workout"/>
+    </ActiveWorkoutIconButton>
   )
 }
+
+CancelWorkoutButton.PropTypes = {
+  onClick: PropTypes.func.isRequired
+}
+export default CancelWorkoutButton

@@ -1,0 +1,77 @@
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: calc(4 * var(--spacing)) auto;
+  font-size: inherit;
+}
+
+.loader--full {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  background-color: var(--bg-color);
+}
+
+.loader--full .loader__circle {
+  background-color: #fff;
+}
+
+.loader--full .loader__circles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes loader-circle-fade {
+  0% {
+    opacity: .1;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: .1;
+  }
+}
+
+.loader__circles {
+  justify-content: center;
+}
+
+.loader__circle {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: #000;
+  animation-name: loader-circle-fade;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.loader__circle:nth-child(2) {
+  animation-delay: .2s;
+}
+
+.loader__circle:nth-child(3) {
+  animation-delay: .4s;
+}
+
+.loader__circle:not(:first-child) {
+  margin-left: .3em;
+}
+
+.loader__text {
+  height: 40px;
+  font-size: 24px;
+  color: #fff;
+}

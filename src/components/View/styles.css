@@ -1,0 +1,15 @@
+.view {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.view--with-top-bar {
+  padding-bottom: 49px;
+}
+
+.view--with-tab-bar {
+  padding-top: calc(var(--top-bar-height) + 20px);
+  /* padding-top: calc(var(--top-bar-height) + env(safe-area-inset-top));
+  padding-top: calc(var(--top-bar-height) + constant(safe-area-inset-top)); */
+}

@@ -1,0 +1,13 @@
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px + calc(3 * var(--spacing));
+  padding: calc(2 * var(--spacing));
+  border-radius: 3px;
+  margin-bottom: calc(0.5 * var(--spacing));
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+  background-color: var(--bg-color-light);
+}

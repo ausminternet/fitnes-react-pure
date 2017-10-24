@@ -1,0 +1,18 @@
+.active-workout-icon-button {
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(2 * var(--spacing));
+  border: 0;
+  background: none;
+}
+
+.active-workout-icon-button:focus {
+  outline: none;
+}
+
+.active-workout-icon-button > img {
+  width: 25px;
+  height: 25px;
+}

@@ -1,0 +1,3 @@
+{
+  "extends": "heise-stylelint-config-standard",
+}

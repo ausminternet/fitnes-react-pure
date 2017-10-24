@@ -1,0 +1,39 @@
+.active-workout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--bg-color);
+}
+
+.active-workout__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 10px;
+}
+
+.active-workout__main {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing);
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  flex-grow: 1;
+  background-color: #fff;
+  box-shadow: 0 -5px 5px rgba(0, 0, 0, .5);
+}
+
+.active-workout__main .current-exercise-repeats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.active-workout > .loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

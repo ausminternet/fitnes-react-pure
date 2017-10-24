@@ -1,0 +1,19 @@
+.primary-button {
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(2 * var(--spacing)) calc(1.5 * var(--spacing));
+  border: 0;
+  border-radius: var(--border-radius);
+  font-size: 18px;
+  line-height: 1;
+  color: #fff;
+  background: var(--accent-color);
+  text-decoration: none;
+}
+
+.primary-button:active {
+  color: #fff;
+  background-color: var(--primary-color);
+}

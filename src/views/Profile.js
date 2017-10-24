@@ -1,23 +1,12 @@
 import React from 'react'
-import {
-  TopBar,
-  TopBarCenter,
-  TopBarRight
-} from 'components/TopBar'
-import View from 'components/View'
-import ViewContent from 'components/ViewContent'
-import LogoutButton from 'components/LogoutButton'
+import Layout from 'components/Layout'
+import TopBarLink from 'components/TopBarLink'
 
 export default function Profile() {
   return (
-    <View>
-      <TopBar>
-        <TopBarCenter>Profile</TopBarCenter>
-        <TopBarRight>
-          <LogoutButton />
-        </TopBarRight>
-      </TopBar>
-      <ViewContent></ViewContent>
-    </View>
+    <Layout
+      title="Profile"
+      buttonRight={<TopBarLink text="Logout" to="/logout" />}
+    />
   )
 }
