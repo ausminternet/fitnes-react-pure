@@ -15,5 +15,5 @@
 
 .primary-button:active {
   color: #fff;
-  background-color: var(--primary-color);
+  background-color: var(--bg-color);
 }

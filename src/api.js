@@ -39,7 +39,9 @@ export const getLogs = async (uid) => {
       id: w.id,
       startedAt: d.startedAt,
       elapsedTime: d.elapsedTime,
-      exercises: w.exercises
+      exercises: w.exercises,
+      type: d.type,
+      effort: d.effort,
     })
   })
   return workouts

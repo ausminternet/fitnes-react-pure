@@ -102,7 +102,7 @@ class App extends Component {
       this.redirected = true
       return <Redirect to={this.state.path} />
     }
-    return this.state.loading === true ? <Loader /> : (
+    return this.state.loading === true ? <Loader full={true} /> : (
       <div className="App">
         <Switch>
           <PublicRoute

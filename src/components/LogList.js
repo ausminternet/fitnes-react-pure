@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
 import Loader from 'components/Loader'
+import LogListEntry from 'components/LogListEntry'
 
 const LogList = ({loading, logs}) => {
   if (loading) return <Loader />
@@ -14,15 +14,7 @@ const LogList = ({loading, logs}) => {
         </div>
       }
       {logs.length !== 0 && logs.map((l, i) => {
-        return (
-          <div key={i}>
-            <Link to={`/logs/${l.id}`}>
-              <div>ID: {l.id}</div>
-              <div>StartedAt: {new Date(l.startedAt).toISOString()}</div>
-              <div>ElapsedTime: {l.elapsedTime}</div>
-            </Link>
-          </div>
-        )
+        return (<LogListEntry log={l} key={i}/>)
       })}
     </div>
   )
