@@ -1,6 +1,7 @@
 .stat {
   position: relative;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   overflow: hidden;
   width: calc(50% - (0.5 * var(--spacing)));

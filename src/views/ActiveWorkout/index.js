@@ -208,12 +208,14 @@ export default class ActiveWorkout extends Component {
               paused={this.state.paused}
               onClick={this.tick}
             />
-            <TimerContainer
-              startTime={this.state.startedAt}
-              paused={this.state.paused}
-              onChange={this.handleElapsedTime}
-            />
-            <Stats exercises={this.state.exercises} />
+            <div className="active-workout__timer-and-stats">
+              <TimerContainer
+                startTime={this.state.startedAt}
+                paused={this.state.paused}
+                onChange={this.handleElapsedTime}
+              />
+              <Stats exercises={this.state.exercises} />
+            </div>
           </div>
         </div>
       )

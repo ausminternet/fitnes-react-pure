@@ -18,6 +18,14 @@
   background-color: var(--bg-color);
 }
 
+@media only screen
+  and (max-device-width: 736px)
+  and (orientation: landscape) {
+  .top-bar {
+    padding-top: 0;
+  }
+}
+
 .top-bar__right,
 .top-bar__left {
   display: flex;

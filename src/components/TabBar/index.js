@@ -1,11 +1,11 @@
 import React from 'react'
 import TabBarLink from 'components/TabBarLink'
 import ProfileIcon from 'media/icons/black/settings.png'
-import ProfileIconActive from 'media/icons/red/settings.png'
+import ProfileIconActive from 'media/icons/blue/settings.png'
 import SportIcon from 'media/icons/black/sport.png'
-import SportIconActive from 'media/icons/red/sport.png'
+import SportIconActive from 'media/icons/blue/sport.png'
 import LogIcon from 'media/icons/black/calendar.png'
-import LogIconActive from 'media/icons/red/calendar.png'
+import LogIconActive from 'media/icons/blue/calendar.png'
 
 import './styles.css'
 
