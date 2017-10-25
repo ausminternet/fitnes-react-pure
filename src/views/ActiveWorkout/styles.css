@@ -39,14 +39,14 @@
     flex-direction: row;
   }
 
-  .active-workout__main .active-workout__current-exercise {
+  .active-workout__main .current-exercise-repeats {
     min-width: 50%;
   }
 
-  .active-workout__main .stats {
+  .active-workout__main .active-workout__name-and-stats {
     display: flex;
-    min-width: 50%;
     flex-direction: column;
+    min-width: 50%;
   }
 
   .active-workout__main .stats {

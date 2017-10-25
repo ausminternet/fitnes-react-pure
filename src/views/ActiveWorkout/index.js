@@ -205,20 +205,20 @@ export default class ActiveWorkout extends Component {
             />
           </section>
           <section className="active-workout__main">
-            <section className="active-workout__exercise">
-              <CurrentExerciseRepeats
-                repeats={this.state.currentRepeats}
-                paused={this.state.paused}
-                onClick={this.tick}
-              />
+            <CurrentExerciseRepeats
+              repeats={this.state.currentRepeats}
+              paused={this.state.paused}
+              onClick={this.tick}
+            />
+            <section className="active-workout__name-and-stats">
               <CurrentExerciseName
                 name={this.state.currentExercise.name}
               />
+              <Stats
+                exercises={this.state.exercises}
+                currentExerciseId={this.state.currentExercise.id}
+              />
             </section>
-            <Stats
-              exercises={this.state.exercises}
-              currentExerciseId={this.state.currentExercise.id}
-            />
           </section>
         </main>
       )
