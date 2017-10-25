@@ -39,13 +39,13 @@
     flex-direction: row;
   }
 
-  .active-workout__main .current-exercise-repeats {
+  .active-workout__main .active-workout__current-exercise {
     min-width: 50%;
   }
 
-  .active-workout__main .active-workout__timer-and-stats {
-    min-width: 50%;
+  .active-workout__main .stats {
     display: flex;
+    min-width: 50%;
     flex-direction: column;
   }
 
@@ -54,7 +54,13 @@
   }
 }
 
-.active-workout__main .current-exercise-repeats {
+.active-workout__exercise {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.active-workout .current-exercise-repeats {
   display: flex;
   align-items: center;
   justify-content: center;

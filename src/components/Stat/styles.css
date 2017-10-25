@@ -33,6 +33,12 @@
   height: 6px;
 }
 
+@media only screen and (min-width: 736px) {
+  .stat__progressbar {
+    height: 12px;
+  }
+}
+
 .stat__progress {
   height: inherit;
   transition: all .5s ease;
@@ -41,6 +47,13 @@
 
 .stat__name {
   height: 20px;
+}
+
+@media only screen and (min-width: 736px) {
+  .stat__name {
+    height: 50px;
+    font-size: 26px;
+  }
 }
 
 @keyframes stat-done-animation {
@@ -71,4 +84,11 @@
 .stat__repeats {
   height: 20px;
   font-weight: 500;
+}
+
+@media only screen and (min-width: 736px) {
+  .stat__repeats {
+    height: 50px;
+    font-size: 26px;
+  }
 }

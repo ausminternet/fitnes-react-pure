@@ -1,6 +1,9 @@
 .current-exercise-name {
-  font-size: 32px;
+  padding: calc(2 * var(--spacing));
+  border-radius: var(--border-radius);
+  margin-bottom: calc(1.5 * var(--border-radius));
+  font-size: 38px;
   line-height: 1;
-  color: #fff;
   text-align: center;
+  background-color: var(--bg-color-light);
 }

@@ -193,28 +193,32 @@ export default class ActiveWorkout extends Component {
             <CancelWorkoutButton
               onClick={this.cancel}
             />
-            <CurrentExerciseName
-              name={this.state.currentExercise.name}
+            <TimerContainer
+              startTime={this.state.startedAt}
+              paused={this.state.paused}
+              onChange={this.handleElapsedTime}
             />
+
             <PauseWorkoutButton
               onClick={this.toggleWorkout}
               paused={this.state.paused}
             />
           </section>
           <section className="active-workout__main">
-            <CurrentExerciseRepeats
-              repeats={this.state.currentRepeats}
-              paused={this.state.paused}
-              onClick={this.tick}
-            />
-            <section className="active-workout__timer-and-stats">
-              <TimerContainer
-                startTime={this.state.startedAt}
+            <section className="active-workout__exercise">
+              <CurrentExerciseRepeats
+                repeats={this.state.currentRepeats}
                 paused={this.state.paused}
-                onChange={this.handleElapsedTime}
+                onClick={this.tick}
               />
-              <Stats exercises={this.state.exercises} />
+              <CurrentExerciseName
+                name={this.state.currentExercise.name}
+              />
             </section>
+            <Stats
+              exercises={this.state.exercises}
+              currentExerciseId={this.state.currentExercise.id}
+            />
           </section>
         </main>
       )
