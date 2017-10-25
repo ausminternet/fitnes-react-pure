@@ -5,5 +5,4 @@
 .random-workouts__buttons {
   display: flex;
   flex-direction: row;
-  height: 90px;
 }
