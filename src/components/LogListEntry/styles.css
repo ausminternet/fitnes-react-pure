@@ -25,6 +25,7 @@
 }
 
 .log-list-entry__date {
+  display: block;
   margin-bottom: 4px;
   font-size: 18px;
   font-weight: 500;
