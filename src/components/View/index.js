@@ -6,12 +6,12 @@ import './styles.css'
 const View = ({name, children, withTabBar = true, withTopBar = true}) => {
   const className = [
     'view',
-    'view--' + name,
+    name ? 'view--' + name : null,
     withTabBar ? 'view--with-tab-bar' : null,
     withTopBar ? 'view--with-top-bar' : null,
   ].join(' ')
 
-  return (<div className={className}>{children}</div>)
+  return (<section className={className}>{children}</section>)
 }
 
 View.PropTypes = {

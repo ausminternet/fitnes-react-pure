@@ -9,7 +9,7 @@ import './styles.css'
 
 const RandomWorkouts = ({loading, efforts, hasExercises}) => {
   return (
-    <div className="random-workouts">
+    <section className="random-workouts">
       <ContentHeader>Random Workouts</ContentHeader>
       <div className="random-workouts__buttons">
         {loading && <Loader />}
@@ -27,7 +27,7 @@ const RandomWorkouts = ({loading, efforts, hasExercises}) => {
           ))
         }
       </div>
-    </div>
+    </section>
   )
 }
 

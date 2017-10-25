@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import './styles.css'
 
 const ViewContent = ({children, ...rest}) => {
-  return (<div className="view-content" {...rest}>{children}</div>)
+  return (<main className="view-content" {...rest}>{children}</main>)
 }
 
 ViewContent.PropTypes = {

@@ -31,7 +31,7 @@ const TabBar = () => {
     }
   ]
   return (
-    <div className="tab-bar">
+    <nav className="tab-bar">
       {tabBarConfig.map((t, i) => {
         return (
           <TabBarLink
@@ -42,7 +42,7 @@ const TabBar = () => {
             key={i}/>
         )
       })}
-    </div>
+    </nav>
   )
 }
 

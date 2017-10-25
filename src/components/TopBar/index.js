@@ -5,9 +5,9 @@ import './styles.css'
 
 export const TopBar = ({ children }) => {
   return (
-    <div className="top-bar">
+    <header className="top-bar">
       {children}
-    </div>
+    </header>
   )
 }
 
@@ -17,9 +17,9 @@ TopBar.PropTypes = {
 
 export const TopBarLeft = ({ children }) => {
   return (
-    <div className="top-bar__left">
+    <section className="top-bar__left">
       {children}
-    </div>
+    </section>
   )
 }
 
@@ -29,9 +29,9 @@ TopBarLeft.PropTypes = {
 
 export const TopBarRight = ({ children }) => {
   return (
-    <div className="top-bar__right">
+    <section className="top-bar__right">
       {children}
-    </div>
+    </section>
   )
 }
 
@@ -41,9 +41,9 @@ TopBarRight.PropTypes = {
 
 export const TopBarCenter = ({ children }) => {
   return (
-    <div className="top-bar__center">
+    <section className="top-bar__center">
       <h1 className="top-bar__title">{children}</h1>
-    </div>
+    </section>
   )
 }
 

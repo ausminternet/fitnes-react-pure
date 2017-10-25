@@ -188,8 +188,8 @@ export default class ActiveWorkout extends Component {
 
     if (!this.state.loading) {
       return (
-        <div className="active-workout">
-          <div className="active-workout__header">
+        <main className="active-workout">
+          <section className="active-workout__header">
             <CancelWorkoutButton
               onClick={this.cancel}
             />
@@ -200,23 +200,23 @@ export default class ActiveWorkout extends Component {
               onClick={this.toggleWorkout}
               paused={this.state.paused}
             />
-          </div>
-          <div className="active-workout__main">
+          </section>
+          <section className="active-workout__main">
             <CurrentExerciseRepeats
               repeats={this.state.currentRepeats}
               paused={this.state.paused}
               onClick={this.tick}
             />
-            <div className="active-workout__timer-and-stats">
+            <section className="active-workout__timer-and-stats">
               <TimerContainer
                 startTime={this.state.startedAt}
                 paused={this.state.paused}
                 onChange={this.handleElapsedTime}
               />
               <Stats exercises={this.state.exercises} />
-            </div>
-          </div>
-        </div>
+            </section>
+          </section>
+        </main>
       )
     }
   }
