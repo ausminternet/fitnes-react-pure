@@ -1,6 +1,8 @@
 .message {
+  width: 100%;
   padding: calc(2 * var(--spacing)) calc(3 * var(--spacing));
   border-radius: var(--border-radius);
-  background-color: #fffacb;
   color: #635900;
+  background-color: #fffacb;
+  /* border: 1px solid #635900; */
 }

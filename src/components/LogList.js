@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Loader from 'components/Loader'
 import LogListEntry from 'components/LogListEntry'
+import Message from 'components/Message'
 
 const LogList = ({loading, logs}) => {
   if (loading) return <Loader />
@@ -9,9 +10,10 @@ const LogList = ({loading, logs}) => {
   return (
     <div className="log-list">
       {logs.length === 0 &&
-        <div className="random-workouts__no-exercises">
-          No Logs available. Go and do your first workout!
-        </div>
+        <Message>
+          <p>No Logs available.</p>
+          <p><strong>Go and do your first workout!</strong></p>
+        </Message>
       }
       {logs.length !== 0 && logs.map((l, i) => {
         return (<LogListEntry log={l} key={i}/>)

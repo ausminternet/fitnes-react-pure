@@ -6,6 +6,7 @@
   margin: 0 calc(-1 * var(--spacing));
   color: #000;
   text-decoration: none;
+  -webkit-tap-highlight-color: var(--bg-color-light);
 }
 
 .log-list-entry:active,

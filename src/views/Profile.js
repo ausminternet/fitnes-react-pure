@@ -5,7 +5,7 @@ import TopBarLink from 'components/TopBarLink'
 export default function Profile() {
   return (
     <Layout
-      title="Profile"
+      title="Settings"
       buttonRight={<TopBarLink text="Logout" to="/logout" />}
     />
   )

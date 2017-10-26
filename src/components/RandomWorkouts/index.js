@@ -15,8 +15,8 @@ const RandomWorkouts = ({loading, efforts, hasExercises}) => {
         {loading && <Loader />}
         {!loading && !hasExercises &&
           <Message>
-            No exercises available.
-            Go and create your first one!
+            <p>No exercises available to create a workout for you.</p>
+            <p><strong>Go and create your first one!</strong></p>
           </Message>
         }
         {!loading && hasExercises &&
