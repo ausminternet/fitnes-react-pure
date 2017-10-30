@@ -1,3 +1,4 @@
 .view-content {
-  padding: var(--spacing);
+  display: flex;
+  flex-direction: column;
 }

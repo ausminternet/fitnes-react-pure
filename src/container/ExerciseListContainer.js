@@ -2,23 +2,23 @@ import React, {Component} from 'react'
 
 import * as api from 'api'
 
-import LogList from 'components/LogList'
+import ExerciseList from 'components/ExerciseList'
 
-class LogListContainer extends Component {
+class ExerciseListContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
       loading: true,
-      logs: [],
+      exercises: [],
     }
   }
 
   async componentDidMount() {
     this._isMounted = true
-    const logs = await api.getLogs(api.currentUser().uid)
+    const exercises = await api.getAllExercises(api.currentUser().uid)
     if (this._isMounted) {
       this.setState({
-        logs,
+        exercises,
         loading: false,
       })
     }
@@ -30,12 +30,12 @@ class LogListContainer extends Component {
 
   render() {
     return (
-      <LogList
+      <ExerciseList
         loading={this.state.loading}
-        logs={this.state.logs}
+        exercises={this.state.exercises}
       />
     )
   }
 }
 
-export default LogListContainer
+export default ExerciseListContainer

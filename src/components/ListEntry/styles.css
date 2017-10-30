@@ -1,0 +1,18 @@
+.list-entry {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.list-entry__arrow {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  opacity: .3;
+  width: 15px;
+  height: 15px;
+  transform: rotate(180deg) translateY(50%);
+  background-image: url('../../media/icons/black/back-filled.png');
+  background-size: 15px 15px;
+}

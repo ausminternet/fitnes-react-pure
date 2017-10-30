@@ -8,6 +8,9 @@ import Register from 'views/Register'
 import Index from 'views/Index'
 import Logs from 'views/Logs'
 import Log from 'views/Log'
+import Exercises from 'views/Exercises'
+import AddExercise from 'views/AddExercise'
+import EditExercise from 'views/EditExercise'
 import ActiveWorkout from 'views/ActiveWorkout'
 import Profile from 'views/Profile'
 import * as api from 'api'
@@ -155,6 +158,21 @@ class App extends Component {
             component={Logs}
             authed={this.state.authed}
           />
+          <PrivateRoute
+            path='/exercises/new'
+            component={AddExercise}
+            authed={this.state.authed}
+          />
+          <PrivateRoute
+            path='/exercises/:id/'
+            component={EditExercise}
+            authed={this.state.authed}
+          />
+          <PrivateRoute
+            path='/exercises'
+            component={Exercises}
+            authed={this.state.authed}
+          />
 
           {/* <Route exact path="/" render={() => (
             this.state.authed ? (
@@ -178,6 +196,10 @@ class App extends Component {
           />
           <Route
             path='/logs'
+            component={TabBar}
+          />
+          <Route
+            path='/exercises'
             component={TabBar}
           />
         </Switch>

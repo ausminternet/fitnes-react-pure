@@ -16,26 +16,29 @@ const LogListEntry = ({log}) => {
     <Link
       to={`/logs/${log.id}`}
       className="log-list-entry"
-      onTouchStart={() => true}
     >
       <div className="log-list-entry__arrow"></div>
       <time className="log-list-entry__date" dateTime={date.toISOString()}>
-        {cleanDate}
+        {day}
       </time>
       {log.type === 'random' &&
+      <div className="log-list-entry__details">
         <span className="log-list-entry__type log-list-entry__type--random">
             Random workout:
         </span>
-      }
-      {log.type === 'planned' &&
-        <span className="log-list-entry__type log-list-entry__type--planned">
-            Planned workout:
-        </span>
-      }
-      {log.type === 'random' &&
         <span className="log-list-entry__effort">
           {log.effort}% Effort
         </span>
+      </div>
+      }
+      {log.type === 'planned' &&
+      <div className="list-entry__details">
+        <span className="log-list-entry__type log-list-entry__type--planned">
+              Planned workout:
+        </span>
+        <span className="log-list-entry__name">
+        </span>
+      </div>
       }
     </Link>
   )

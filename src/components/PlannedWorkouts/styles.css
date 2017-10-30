@@ -1,2 +1,3 @@
-.planned-workouts__buttons {
+.planned-workouts {
+  margin: var(--spacing);
 }

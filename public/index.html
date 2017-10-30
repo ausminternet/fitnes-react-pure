@@ -26,12 +26,66 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <style>
+    :root {
+      --bg-color: #444;
+      --bg-color-light: #e4e4e4;
+      --accent-color: #c0392b;
+      /* --accent-color: #007AFF; */
+      --border-color: #cdcdcd;
+      --border-radius: 3px;
+      --top-bar-height: 44px;
+      --top-bar-font-size: 17px;
+      --tab-bar-height: 49px;
+      --tab-bar-bg-color: #f8f8f8;
+      --spacing: 8px;
+      --view-padding: --spacing;
+      --z-tab-bar: 1;
+      --z-top-bar: 1;
+    }
+    .top-bar {
+      position: fixed;
+      z-index: var(--z-top-bar);
+      top: 0;
+      right: 0;
+      left: 0;
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      height: calc(var(--top-bar-height) + 20px);
+      /* height: calc(var(--top-bar-height) + env(safe-area-inset-top));
+      height: calc(var(--top-bar-height) + constant(safe-area-inset-top)); */
+      padding-top: 20px;
+      /* padding-top: env(safe-area-inset-top);
+      padding-top: constant(safe-area-inset-top); */
+      font-size: var(--top-bar-font-size);
+      color: #fff;
+      background-color: var(--bg-color);
+    }
+    .tab-bar {
+      position: fixed;
+      z-index: var(--z-tab-bar);
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      height: var(--tab-bar-height);
+      border-top: 1px solid var(--border-color);
+      background-color: #fff;
+      background-color: var(--tab-bar-bg-color);
+    }
+    </style>  
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root">
+      <div class="top-bar"></div>
+      LALALA
+      <div class="tab-bar"></div>
     </div>
     <!--
       This HTML file is a template.

@@ -49,17 +49,29 @@ export const getLogs = async (uid) => {
 
 export const getLog = async (uid, logId) => {
   const collection = `users/${uid}/log`
-  const data = await firestore.collection(collection).doc(logId).get()
-  const d = data.data()
-  const log = {
-    id: data.id,
+  const log = await firestore.collection(collection).doc(logId).get()
+  const d = log.data()
+  return {
+    id: log.id,
     startedAt: d.startedAt,
     elapsedTime: d.elapsedTime,
     type: d.type,
     effort: d.effort,
     exercises: d.exercises,
   }
-  return log
+}
+
+export const getExercise = async (uid, exerciseId) => {
+  const collection = `users/${uid}/exercises`
+  const exercise = await firestore.collection(collection).doc(exerciseId).get()
+  const d = exercise.data()
+  return {
+    id: exercise.id,
+    name: d.name,
+    repeatsMax: d.repeatsMax,
+    repeatsSetMax: d.repeatsSetMax,
+    repeatsSetMin: d.repeatsSetMin,
+  }
 }
 
 export const getLastExercises = async (uid) => {
@@ -82,6 +94,18 @@ export const saveWorkout = async (uid, workout) => {
   const docRef = await firestore.collection(collection).add(workout)
   console.log(docRef.id)
   return docRef.id
+}
+
+export const addExercise = async (uid, exercise) => {
+  const collection = 'users/' + uid + '/exercises'
+  const docRef = await firestore.collection(collection).add(exercise)
+  console.log(docRef.id)
+  return docRef.id
+}
+
+export const updateExercise = async (uid, exerciseId, data) => {
+  const collection = 'users/' + uid + '/exercises'
+  return firestore.collection(collection).doc(exerciseId).set(data)
 }
 
 export function signUp (email, pw) {

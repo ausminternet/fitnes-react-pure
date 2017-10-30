@@ -1,0 +1,24 @@
+.exercise-list-entry {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: calc(2 * var(--spacing)) calc(1.5 * var(--spacing));
+  padding-right: calc(4 * var(--spacing));
+  line-height: 1;
+  color: #000;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, .2);
+}
+
+.exercise-list-entry:last-child {
+  border: 0;
+}
+
+.exercise-list-entry__name {
+  flex-grow: 1;
+}
+
+.exercise-list-entry__repeats {
+  font-size: 12px;
+  color: #6f6f6f;
+}

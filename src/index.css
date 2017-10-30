@@ -43,6 +43,7 @@ input:-webkit-autofill:focus {
   --bg-color: #444;
   --bg-color-light: #e4e4e4;
   --accent-color: #c0392b;
+  --accent-color-dark: #a93326;
   /* --accent-color: #007AFF; */
   --border-color: #cdcdcd;
   --border-radius: 3px;
@@ -52,8 +53,9 @@ input:-webkit-autofill:focus {
   --tab-bar-bg-color: #f8f8f8;
   --spacing: 8px;
   --view-padding: --spacing;
-  --z-tab-bar: 1;
-  --z-top-bar: 1;
+  --z-tab-bar: 2;
+  --z-top-bar: 2;
+  --z-list-header: 1;
 }
 
 .logo {

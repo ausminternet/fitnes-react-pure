@@ -27,12 +27,12 @@ const TabBar = () => {
       iconActive: LogIconActive,
       text: 'Logs',
     },
-    {
-      to: '/workouts',
-      icon: WorkoutsIcon,
-      iconActive: WorkoutsIconActive,
-      text: 'Workouts',
-    },
+    // {
+    //   to: '/workouts',
+    //   icon: WorkoutsIcon,
+    //   iconActive: WorkoutsIconActive,
+    //   text: 'Workouts',
+    // },
     {
       to: '/exercises',
       icon: ExerciseIcon,
