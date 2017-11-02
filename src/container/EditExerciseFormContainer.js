@@ -11,55 +11,35 @@ class EditExcersiceFormContainer extends Component {
     super(props)
     this.state = {
       redirect: false,
-      loading: true,
-      id: props.id
+      loading: false,
+      id: props.id,
+      delayedLoader: true
     }
-  }
-
-  async componentDidMount() {
-    this._isMounted = true
-    const exercise =
-      await api.getExercise(api.currentUser().uid, this.state.id)
-    if (this._isMounted) {
-      console.log(exercise)
-      this.setState({
-        loading: false,
-        exercise
-      })
-    }
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false
-  }
-
-  async getAllExercises() {
-    return api.getAllExercises(api.currentUser().uid)
   }
 
   onSubmitHandler = async (exercise) => {
-    this.setState({loading: true})
+    this.setState({loading: true, delayedLoader: false})
     await api.updateExercise(
       api.currentUser().uid,
-      this.state.exercise.id,
+      this.state.id,
       exercise
     )
     this.setState({
       redirect: true,
-      redirectTo: `/exercises/${this.state.exercise.id}`
+      redirectTo: `/exercises/${this.state.id}`
     })
   }
 
   render() {
     if (this.state.redirect) return <Redirect to={this.state.redirectTo} />
 
-    if (this.state.loading) return <Loader />
+    if (this.state.loading) return <Loader delayed={this.state.delayedLoader}/>
 
     return (
       <ExerciseFormContainer
         onSubmit={this.onSubmitHandler}
-        name={this.state.exercise.name}
-        exercise={this.state.exercise}
+        exerciseId={this.state.id}
+        isEdit={true}
       />
     )
   }

@@ -4,9 +4,10 @@ import Message from 'components/Message'
 import ExerciseListEntry from 'components/ExerciseListEntry'
 import ListEntry from 'components/ListEntry'
 
-const ExerciseList = ({loading, exercises}) => {
+const ExerciseList = ({
+  loading, exercises, onExerciseChange, onExerciseDelete
+}) => {
   if (loading) return <Loader />
-
   return (
     <div className="exercise-list">
       {exercises.length === 0 &&
@@ -15,10 +16,10 @@ const ExerciseList = ({loading, exercises}) => {
           <p><strong>Go and create your first exercise!</strong></p>
         </Message>
       }
-      {exercises.length !== 0 && exercises.map((d, i) => {
+      {exercises.length !== 0 && exercises.map((e) => {
         return (
-          <ListEntry key={i}>
-            <ExerciseListEntry exercise={d}/>
+          <ListEntry key={e.id}>
+            <ExerciseListEntry exercise={e} exercises={exercises} onExerciseChange={onExerciseChange} onDelete={onExerciseDelete}/>
           </ListEntry>
         )
       })}

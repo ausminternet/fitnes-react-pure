@@ -8,7 +8,7 @@ import AddIcon from 'media/icons/white/add.png'
 const Exercises = () => {
   return (
     <Layout
-      title="Exercises"
+      title="Exercise"
       name="exercises"
       buttonRight={<TopBarLink icon={{uri: AddIcon}} to={'/exercises/new'}/>}
     >

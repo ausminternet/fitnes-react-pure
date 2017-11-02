@@ -1,13 +1,40 @@
 .exercise-list-entry {
+  position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   width: 100%;
-  padding: calc(2 * var(--spacing)) calc(1.5 * var(--spacing));
-  padding-right: calc(4 * var(--spacing));
+  /* padding-right: calc(4 * var(--spacing)); */
   line-height: 1;
   color: #000;
   text-decoration: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, .2);
+  transition: all .3s ease;
+}
+
+.exercise-list-entry.is-open {
+}
+
+.exercise-list-entry__container {
+  display: flex;
+  align-items: center;
+  padding: calc(2 * var(--spacing)) calc(1.5 * var(--spacing));
+}
+
+.exercise-list-entry__arrow {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  opacity: .3;
+  width: 15px;
+  height: 15px;
+  transform: rotate(180deg) translateY(50%);
+  background-image: url('../../media/icons/black/back-filled.png');
+  background-size: 15px 15px;
+  transition: transform .3s ease;
+}
+
+.exercise-list-entry.is-open .exercise-list-entry__arrow {
+  transform: rotate(-90deg) translateY(0%) translateX(50%);
 }
 
 .exercise-list-entry:last-child {
@@ -22,3 +49,4 @@
   font-size: 12px;
   color: #6f6f6f;
 }
+

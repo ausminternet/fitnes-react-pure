@@ -9,6 +9,7 @@ import Index from 'views/Index'
 import Logs from 'views/Logs'
 import Log from 'views/Log'
 import Exercises from 'views/Exercises'
+import Exercise from 'views/Exercise'
 import AddExercise from 'views/AddExercise'
 import EditExercise from 'views/EditExercise'
 import ActiveWorkout from 'views/ActiveWorkout'
@@ -164,8 +165,18 @@ class App extends Component {
             authed={this.state.authed}
           />
           <PrivateRoute
-            path='/exercises/:id/'
+            path='/exercises/edit/:id/'
             component={EditExercise}
+            authed={this.state.authed}
+          />
+          {/* <PrivateRoute
+            path='/exercises/delete/:id/'
+            component={DeleteExercise}
+            authed={this.state.authed}
+          /> */}
+          <PrivateRoute
+            path='/exercises/:id/'
+            component={Exercise}
             authed={this.state.authed}
           />
           <PrivateRoute

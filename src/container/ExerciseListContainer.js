@@ -28,11 +28,27 @@ class ExerciseListContainer extends Component {
     this._isMounted = false
   }
 
+  onExerciseChange = (exercise) => {
+    this.setState(prevState => ({
+      exercises: prevState.exercises.map(x => {
+        return x.id === exercise.id ? exercise : x
+      })
+    }))
+  }
+
+  onExerciseDelete = (exercise) => {
+    this.setState(prevState => ({
+      exercises: prevState.exercises.filter(e => e.id !== exercise.id)
+    }))
+  }
+
   render() {
     return (
       <ExerciseList
         loading={this.state.loading}
         exercises={this.state.exercises}
+        onExerciseChange={this.onExerciseChange}
+        onExerciseDelete={this.onExerciseDelete}
       />
     )
   }

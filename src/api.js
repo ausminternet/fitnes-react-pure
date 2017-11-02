@@ -74,6 +74,12 @@ export const getExercise = async (uid, exerciseId) => {
   }
 }
 
+export const deleteExercise = async (uid, exerciseId) => {
+  const collection = `users/${uid}/exercises`
+  return firestore.collection(collection)
+    .doc(exerciseId).delete()
+}
+
 export const getLastExercises = async (uid) => {
   const collection = `users/${uid}/log`
   const data = await firestore.collection(collection)
@@ -103,9 +109,9 @@ export const addExercise = async (uid, exercise) => {
   return docRef.id
 }
 
-export const updateExercise = async (uid, exerciseId, data) => {
+export const updateExercise = async (uid, data) => {
   const collection = 'users/' + uid + '/exercises'
-  return firestore.collection(collection).doc(exerciseId).set(data)
+  return firestore.collection(collection).doc(data.id).set(data)
 }
 
 export function signUp (email, pw) {

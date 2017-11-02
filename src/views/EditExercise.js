@@ -1,7 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import TopBarLink from 'components/TopBarLink'
+import PrimaryButton from 'components/PrimaryButton'
 import EditExerciseFormContainer from 'container/EditExerciseFormContainer'
 import Layout from 'components/Layout'
 
@@ -11,9 +13,14 @@ const EditExercise = ({computedMatch}) => {
     <Layout
       title="Edit exercise"
       name="edit-exercise"
-      buttonLeft={<TopBarLink to={'/exercises'} text="Cancel"/>}
+      buttonLeft={<TopBarLink to={`/exercises/${id}`} text="Cancel"/>}
     >
       <EditExerciseFormContainer id={id} />
+      <PrimaryButton>
+        <Link to={`/exercises/delete/${id}`} >
+          Delete
+        </Link>
+      </PrimaryButton>
     </Layout>
   )
 }

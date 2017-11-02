@@ -1,25 +1,21 @@
-.primary-button {
+.secondary-button {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   padding: calc(2 * var(--spacing)) calc(1.5 * var(--spacing));
-  border: 0;
+  border: 1px solid var(--accent-color);
   border-radius: var(--border-radius);
   margin: 0;
   margin-bottom: var(--spacing);
   font-size: 18px;
   line-height: 1;
-  color: #fff;
-  background: var(--accent-color);
+  color: var(--accent-color);
+  background: #fff;
   text-decoration: none;
 }
 
-.primary-button:active {
+.secondary-button:active {
   color: #fff;
-  background-color: var(--bg-color);
-}
-
-.primary-button:disabled {
-  opacity: .5;
+  background-color: var(--accent-color);
 }
