@@ -44,7 +44,8 @@ input:-webkit-autofill:focus {
   --bg-color-light: #e4e4e4;
   --accent-color: #c0392b;
   --accent-color-dark: #a93326;
-  /* --accent-color: #007AFF; */
+  --accent-color: #007AFF;
+  --accent-color-dark: #004ea2;
   --border-color: #cdcdcd;
   --border-radius: 3px;
   --top-bar-height: 44px;

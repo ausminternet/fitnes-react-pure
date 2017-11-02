@@ -103,6 +103,7 @@ export const saveWorkout = async (uid, workout) => {
 }
 
 export const addExercise = async (uid, exercise) => {
+  console.log('exeise in api:', exercise)
   const collection = 'users/' + uid + '/exercises'
   const docRef = await firestore.collection(collection).add(exercise)
   console.log(docRef.id)

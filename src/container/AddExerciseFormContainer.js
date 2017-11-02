@@ -9,15 +9,36 @@ import ExerciseFormContainer from 'container/ExerciseFormContainer'
 class AddExcersiceFormContainer extends Component {
   state = {
     redirect: false,
-    loading: false
+    loading: true
+  }
+
+  async componentDidMount() {
+    this._isMounted = true
+    const exercises = await api.getAllExercises(api.currentUser().uid)
+    if (this._isMounted) {
+      this.setState({
+        exercises,
+        loading: false,
+      })
+    }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false
   }
 
   onSubmitHandler = async (exercise) => {
     this.setState({loading: true})
-    const exerciseId = await api.addExercise(api.currentUser().uid, exercise)
+    const model = {
+      name: exercise.name,
+      repeatsMax: exercise.repeatsMax,
+      repeatsSetMax: exercise.repeatsSetMax,
+      repeatsSetMin: exercise.repeatsSetMin
+    }
+    await api.addExercise(api.currentUser().uid, model)
     this.setState({
       redirect: true,
-      redirectTo: `/exercises/${exerciseId}`
+      redirectTo: `/exercises/`
     })
   }
 
@@ -27,7 +48,7 @@ class AddExcersiceFormContainer extends Component {
     if (this.state.loading) return <Loader />
 
     return (
-      <ExerciseFormContainer onSubmit={this.onSubmitHandler}/>
+      <ExerciseFormContainer exercises={this.state.exercises} onSubmit={this.onSubmitHandler}/>
     )
   }
 }

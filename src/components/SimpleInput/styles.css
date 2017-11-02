@@ -4,7 +4,7 @@
   margin: 0;
   font-size: 16px;
   font-family: -apple-system, sans-serif;
-  line-height: 1;
+  line-height: normal;
   border-radius: var(--border-radius);
   -webkit-appearance: none;
 }

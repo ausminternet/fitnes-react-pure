@@ -40,7 +40,7 @@ class ExerciseListEntry extends Component {
   }
 
   onSubmitHandler = async (exercise) => {
-    this.setState({loading: true, delayedLoader: false})
+    this.setState({saving: true})
     await api.updateExercise(api.currentUser().uid, exercise)
     this.setState({exercise}, this.toggleEdit())
     this.props.onExerciseChange(exercise)
@@ -56,12 +56,12 @@ class ExerciseListEntry extends Component {
 
     return (
       <div className={className}>
-        {/* <div className="exercise-list-entry__arrow"></div> */}
         {!this.state.showEdit &&
           <div
             className="exercise-list-entry__container"
             onClick={this.toggleDetails}
           >
+            <div className="exercise-list-entry__arrow"></div>
             <span className="exercise-list-entry__name">{name}</span>
             {!this.state.showDetails && !this.state.showEdit &&
             <div className="exercise-list-entry__repeats">
@@ -84,7 +84,7 @@ class ExerciseListEntry extends Component {
             onSubmit={this.onSubmitHandler}
             onCancel={this.toggleEdit}
             isEdit={true}
-            loading={this.state.loading}
+            saving={this.state.saving}
           />
         }
       </div>

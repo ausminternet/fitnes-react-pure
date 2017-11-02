@@ -1,15 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Loader from 'components/Loader'
-import PrimaryButton from 'components/PrimaryButton'
-import SecondaryButton from 'components/SecondaryButton'
+import 'components/PrimaryButton/styles.css'
 
 import './styles.css'
 
-const SingleExercise = ({loading, exercise, onEditClick, onDeleteClick}) => {
-  if (loading) return <Loader />
-
+const SingleExercise = ({exercise, onEditClick, onDeleteClick}) => {
   return (
     <div className="single-exercise">
       {/* <div className="single-exercise__repeats-title">
@@ -41,23 +37,19 @@ const SingleExercise = ({loading, exercise, onEditClick, onDeleteClick}) => {
           </div>
         </div>
       </div>
-      <div className="single-exercise__buttons">
-        <PrimaryButton>
-          <button
-            className="single-exercise__edit"
-            onClick={onEditClick}
-          >
-        Edit
-          </button>
-        </PrimaryButton>
-        <SecondaryButton>
-          <button
-            className="single-exercise__delete"
-            onClick={onDeleteClick}
-          >
+      <div className="single-exercise__buttons" onTouchStart={() => true}>
+        <button
+          className="single-exercise__edit button"
+          onClick={onEditClick}
+        >
+          Edit
+        </button>
+        {/* <button
+          className="single-exercise__delete button button--danger"
+          onClick={onDeleteClick}
+        >
         Delete
-          </button>
-        </SecondaryButton>
+        </button> */}
       </div>
     </div>
   )

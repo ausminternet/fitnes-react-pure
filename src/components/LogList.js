@@ -12,7 +12,7 @@ const LogList = ({loading, logs}) => {
   let list = []
   logs.map((l, i) => {
     let date = new Date(l.startedAt)
-    let logMonth = date.getDate() + 1
+    let logMonth = date.getMonth() + 1
     let year = date.getFullYear()
     if (month !== logMonth) {
       let locale = 'de-de'

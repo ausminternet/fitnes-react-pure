@@ -5,23 +5,42 @@ import * as api from 'api'
 import ExerciseList from 'components/ExerciseList'
 
 class ExerciseListContainer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      loading: true,
-      exercises: [],
-    }
+  state = {
+    loading: true,
+    exercises: [],
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({showAddForm: nextProps.showAddForm})
   }
 
   async componentDidMount() {
     this._isMounted = true
     const exercises = await api.getAllExercises(api.currentUser().uid)
+    exercises.sort(function(a, b) {
+      var textA = a.name.toUpperCase()
+      var textB = b.name.toUpperCase()
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+    })
     if (this._isMounted) {
       this.setState({
         exercises,
         loading: false,
       })
     }
+  }
+
+  onExerciseAdd = async (exercise) => {
+    this.setState({loading: true})
+    const model = {
+      name: exercise.name,
+      repeatsMax: exercise.repeatsMax,
+      repeatsSetMax: exercise.repeatsSetMax,
+      repeatsSetMin: exercise.repeatsSetMin
+    }
+    await api.addExercise(api.currentUser().uid, model)
+    this.onExerciseChange(exercise)
+    this.setState({loading: false})
   }
 
   componentWillUnmount() {

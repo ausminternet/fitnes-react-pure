@@ -34,5 +34,6 @@
 }
 
 .single-exercise__edit {
-  margin-right: var(--spacing);
+  /* margin-right: var(--spacing); */
+  min-width: 66%;
 }

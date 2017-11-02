@@ -7,7 +7,7 @@ import SecondaryButton from 'components/SecondaryButton'
 import './styles.css'
 
 const ExcersiceForm = ({
-  loading,
+  saving,
   onSubmit,
   errorMessage,
   isValid,
@@ -16,21 +16,27 @@ const ExcersiceForm = ({
   name,
   repeatsMax,
   repeatsSetMin,
-  repeatsSetMax
+  repeatsSetMax,
+  className,
+  isEdit
 }) => {
-  const className = [
+  const newClassName = [
+    className,
     'exercise-form',
-    loading ? 'is-loading' : null
+    saving ? 'is-saving' : null
   ].join(' ')
   return (
-    <form onSubmit={onSubmit} className={className} disabled={loading}>
+    <form onSubmit={onSubmit} className={newClassName} autoComplete="false">
 
       <SimpleInput
+        autoFocus
         onChange={onChange}
         name="name"
-        label="name"
         value={name}
+        placeholder="Exercise"
         className="exercise-form__name"
+        disabled={saving}
+        type="text"
       />
       <div className="exercise-form__repeats-container">
         <div className="exercise-form__repeats">
@@ -39,8 +45,10 @@ const ExcersiceForm = ({
             name="repeatsSetMin"
             type="text"
             pattern="\d*"
+            placeholder="10"
             value={repeatsSetMin}
             className="exercise-form__repeats-value"
+            disabled={saving}
           />
           <div className="exercise-form__repeats-key">
             minimum repeats<br />per set
@@ -52,8 +60,10 @@ const ExcersiceForm = ({
             name="repeatsSetMax"
             type="text"
             pattern="\d*"
+            placeholder="20"
             value={repeatsSetMax}
             className="exercise-form__repeats-value"
+            disabled={saving}
           />
           <div className="exercise-form__repeats-key">
             maximum repeats<br />per set
@@ -65,8 +75,10 @@ const ExcersiceForm = ({
             name="repeatsMax"
             type="text"
             pattern="\d*"
+            placeholder="30"
             value={repeatsMax}
             className="exercise-form__repeats-value"
+            disabled={saving}
           />
           <div className="exercise-form__repeats-key">
             maximum repeats<br />per workout
@@ -76,15 +88,17 @@ const ExcersiceForm = ({
       {errorMessage &&
         <div className="exercise-form__error">{errorMessage}</div>
       }
-      <div className="exercise-form__buttons" onTouchStart="">
+      <div className="exercise-form__buttons" onTouchStart={() => true}>
         <PrimaryButton>
-          <button className="exercise-form__submit" type="submit" disabled={!isValid}>
-            {loading ? 'Saving...' : 'Save'}
+          <button className="exercise-form__submit" type="submit" disabled={!isValid || saving}>
+            {saving ? 'Saving...' : 'Save'}
           </button>
         </PrimaryButton>
-        <SecondaryButton>
-          <button className="exercise-form__cancel" type="button" onClick={onCancel}>Cancel</button>
-        </SecondaryButton>
+        {isEdit &&
+          <SecondaryButton>
+            <button className="exercise-form__cancel" type="button" onClick={onCancel} disabled={saving}>Cancel</button>
+          </SecondaryButton>
+        }
       </div>
     </form>
   )

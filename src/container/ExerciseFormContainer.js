@@ -8,12 +8,12 @@ const ERROR_NAME = 'This name is already taken, please choose another.'
 const ERROR_MIN = 'Minimum repeats per set have to be less or equal than maximum repeats per set.'
 const ERROR_MAX = 'max repeats per set have to be less or equalthan max repeats per workout'
 
-class ExcersiceFormContainer extends Component {
+class ExcerciseFormContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
       formIsValid: false,
-      loading: this.props.loading,
+      saving: this.props.saving,
       name: '',
       repeatsMax: '',
       repeatsSetMax: '',
@@ -39,11 +39,10 @@ class ExcersiceFormContainer extends Component {
         repeatsSetMin: this.exercise.repeatsSetMin
       })
     }
-    this.setState({loading: false})
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({loading: nextProps.loading})
+    this.setState({saving: nextProps.saving})
   }
 
   componentWillUnmount() {
@@ -70,7 +69,6 @@ class ExcersiceFormContainer extends Component {
         return
       }
     }
-
     if ((this.state.repeatsSetMax && this.state.repeatsMax) &&
       (+this.state.repeatsSetMin > +this.state.repeatsSetMax)) {
       this.setState({
@@ -96,7 +94,10 @@ class ExcersiceFormContainer extends Component {
       this.state.repeatsSetMax &&
       this.state.repeatsSetMin) {
       this.enableSubmit()
+      return
     }
+
+    this.disableSubmit()
   }
 
   enableSubmit = () => {
@@ -108,14 +109,16 @@ class ExcersiceFormContainer extends Component {
   }
 
   onFormSubmit = async (e) => {
-    e.preventDefault()
     e.stopPropagation()
+    e.preventDefault()
+    this.checkValues()
+    if (!this.state.formIsValid) return
     const model = {
       id: this.state.id,
       name: this.state.name,
-      repeatsMax: this.state.repeatsMax,
-      repeatsSetMax: this.state.repeatsSetMax,
-      repeatsSetMin: this.state.repeatsSetMin
+      repeatsMax: Number(this.state.repeatsMax),
+      repeatsSetMax: Number(this.state.repeatsSetMax),
+      repeatsSetMin: Number(this.state.repeatsSetMin)
     }
     this.onSubmitHandler(model)
   }
@@ -129,22 +132,24 @@ class ExcersiceFormContainer extends Component {
   render() {
     return (
       <ExerciseForm
-        loading={this.state.loading}
+        saving={this.state.saving}
         isValid={this.state.formIsValid}
         errorMessage={this.state.errorMessage}
         onSubmit={this.onFormSubmit}
         onChange={this.handleInputChange}
         onCancel={this.props.onCancel}
         name={this.state.name}
+        className={this.props.className}
         repeatsMax={this.state.repeatsMax}
         repeatsSetMax={this.state.repeatsSetMax}
         repeatsSetMin={this.state.repeatsSetMin}
+        isEdit={this.isEdit}
       />
     )
   }
 }
 
-export default ExcersiceFormContainer
+export default ExcerciseFormContainer
 // import React, {Component} from 'react'
 
 // import * as api from 'api'

@@ -11,10 +11,12 @@
 
 .log-list-entry__date {
   display: block;
+  text-align: right;
   margin-right: calc(1.5 * var(--spacing));
   font-size: 36px;
   font-weight: 300;
   line-height: 1;
+  min-width: 50px;
 }
 
 .log-list-entry__details {
